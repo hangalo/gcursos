@@ -91,16 +91,16 @@ public class TurmaDAO implements GenericoDAO<Turma> {
     }
 
     @Override
-    public Turma findById(Integer id) {
+    public Turma findById(Turma turma) {
 
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        Turma turma = new Turma();
+       // Turma turma = new Turma();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
-            ps.setInt(1, id);
+            ps.setInt(1, turma.getIdTurma());
             rs = ps.executeQuery();
 
             if (!rs.next()) {
@@ -113,7 +113,7 @@ public class TurmaDAO implements GenericoDAO<Turma> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return turma;
     }
 
     @Override

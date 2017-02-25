@@ -89,7 +89,7 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
     }
 
     @Override
-    public Funcionario findById(Integer id) {
+    public Funcionario findById(Funcionario funcionario) {
 
         PreparedStatement ps = null;
         Connection conn = null;
@@ -110,7 +110,7 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return funcionario;
     }
 
     @Override

@@ -21,7 +21,7 @@ public interface GenericoDAO<T> {
 
     void delete(T t);
 
-    T findById(Integer id);
+    T findById(T t);
 
     List<T> findAll();
 

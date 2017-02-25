@@ -89,7 +89,7 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
     }
 
     @Override
-    public Matricula findById(Integer id) {
+    public Matricula findById(Matricula matricula) {
 
         PreparedStatement ps = null;
         Connection conn = null;
@@ -110,7 +110,7 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return matricula;
     }
 
     @Override

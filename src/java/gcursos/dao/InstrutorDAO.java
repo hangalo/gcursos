@@ -74,7 +74,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
     }
 
     @Override
-    public Instrutor findById(Integer id) {
+    public Instrutor findById(Instrutor instrutor) {
       
         PreparedStatement ps = null;
         Connection conn = null;
@@ -95,7 +95,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return instrutor;
     }
 
     @Override
@@ -108,13 +108,13 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(LISTAR_TUDO);
 
-            ps.executeQuery();
+        ps.executeQuery();
             while (rs.next()) {
-                /*Codigo Aqui*/
+ /*Codigo Aqui*/
                 popularComDados(null, null);
 
             }
-
+           
 
             popularComDados(null, null);
         } catch (SQLException ex) {

@@ -73,7 +73,7 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
     }
 
     @Override
-    public CategoriaCurso findById(Integer id) {
+    public CategoriaCurso findById(CategoriaCurso categoriaCurso) {
 
         PreparedStatement ps = null;
         Connection conn = null;
@@ -94,7 +94,7 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return categoriaCurso;
     }
 
     @Override

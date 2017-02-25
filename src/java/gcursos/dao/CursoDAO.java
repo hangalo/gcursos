@@ -100,11 +100,11 @@ public class CursoDAO implements GenericoDAO<Curso> {
     }
 
     @Override
-    public Curso findById(Integer id) {
+    public Curso findById(Curso curso) {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        Curso curso = new Curso();
+        
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);

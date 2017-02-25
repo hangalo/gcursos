@@ -89,12 +89,12 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
     }
 
     @Override
-    public Aluno findById(Integer id) {
+    public Aluno findById(Aluno aluno) {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
         
-        Aluno aluno = new Aluno();
+     
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
@@ -111,7 +111,7 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return aluno;
     }
 
     @Override
