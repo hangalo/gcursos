@@ -5,13 +5,16 @@
  */
 package gcursos.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author praveen
  */
-public class Funcionario extends Pessoa{
+public class Funcionario extends Pessoa implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     public Funcionario() {
     }
