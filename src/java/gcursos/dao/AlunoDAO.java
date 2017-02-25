@@ -6,14 +6,18 @@
 package gcursos.dao;
 
 import gcursos.modelo.Aluno;
+import gcursos.util.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  *
  * @author informatica
  */
-public class AlunoDAO implements GenericoDAO<Aluno>{
+public class AlunoDAO implements GenericoDAO<Aluno> {
 
     private static final String INSERIR = "";
     private static final String ACTUALIZAR = "";
@@ -23,31 +27,120 @@ public class AlunoDAO implements GenericoDAO<Aluno>{
 
     @Override
     public void save(Aluno t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement ps = null;
+        Connection conn = null;
+        if (t == null) {
+            System.err.println("O valor oassado não pode ser nulo!");
+        }
+        try {
+            conn = Conexao.getConnection();
+            ps = conn.prepareStatement(INSERIR);
+
+            /* Codigo aqui*/
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir dados: " + e.getMessage());
+        } finally {
+            Conexao.closeConnection(conn, ps);
+        }
     }
 
     @Override
     public void update(Aluno t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement ps = null;
+        Connection conn = null;
+        if (t == null) {
+            System.err.println("O valor oassado não pode ser nulo!");
+        }
+        try {
+            conn = Conexao.getConnection();
+            ps = conn.prepareStatement(ACTUALIZAR);
+
+            /* Codigo aqui*/
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir dados: " + e.getMessage());
+        } finally {
+            Conexao.closeConnection(conn, ps);
+        }
     }
 
     @Override
     public void delete(Aluno t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement ps = null;
+        Connection conn = null;
+        if (t == null) {
+            System.err.println("O valor oassado não pode ser nulo!");
+        }
+        try {
+            conn = Conexao.getConnection();
+            ps = conn.prepareStatement(ELIMINAR);
+
+            /* Codigo aqui*/
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir dados: " + e.getMessage());
+        } finally {
+            Conexao.closeConnection(conn, ps);
+        }
     }
 
     @Override
-    public Aluno findById(Aluno t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Aluno findById(Integer id) {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        
+        Aluno aluno = new Aluno();
+        try {
+            conn = Conexao.getConnection();
+            ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
+
+            if (!rs.next()) {
+                System.err.println("Não foi encontrado nenhum registo com o id: ");
+            }
+            /*Codigo Aqui*/
+
+            popularComDados(aluno, rs);
+        } catch (SQLException ex) {
+            System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
+        } finally {
+            Conexao.closeConnection(conn, ps, rs);
+        }
+
+        return null;
     }
 
     @Override
     public List<Aluno> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        try {
+            conn = Conexao.getConnection();
+            ps = conn.prepareStatement(LISTAR_TUDO);
+            ps.executeQuery();
+            while (rs.next()) {
+                /*Codigo Aqui*/
+                popularComDados(null, null);
+
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
+        } finally {
+            Conexao.closeConnection(conn, ps, rs);
+        }
+
+        return null;
     }
 
     @Override
     public void popularComDados(Aluno t, ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 }

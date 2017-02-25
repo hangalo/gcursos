@@ -19,6 +19,7 @@ public class Curso implements Serializable{
     private String requisitosCurso;
     private String conteudoCurso;
     private int cargaHorariaCurso;
+    private CategoriaCurso categoriaCurso;
     private double precoCurso;
 
     public Curso() {
@@ -73,6 +74,16 @@ public class Curso implements Serializable{
         this.cargaHorariaCurso = cargaHorariaCurso;
     }
 
+    public CategoriaCurso getCategoriaCurso() {
+        return categoriaCurso;
+    }
+
+    public void setCategoriaCurso(CategoriaCurso categoriaCurso) {
+        this.categoriaCurso = categoriaCurso;
+    }
+
+    
+    
     public double getPrecoCurso() {
         return precoCurso;
     }
