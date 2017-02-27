@@ -89,11 +89,12 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
     }
 
     @Override
-    public Matricula findById(Matricula matricula) {
+    public Matricula findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        Matricula matricula = new Matricula();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);

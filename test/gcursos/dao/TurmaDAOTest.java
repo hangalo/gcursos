@@ -98,10 +98,10 @@ public class TurmaDAOTest {
         System.out.println("findById");
         Turma turma = new Turma();
 
-       turma.setIdTurma(3);
+Integer id = 3;
         TurmaDAO instance = new TurmaDAO();
        
-        Turma result = instance.findById(turma);
+        Turma result = instance.findById(id);
 
       assertTrue(result!=null);
 

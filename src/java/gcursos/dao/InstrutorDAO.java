@@ -74,11 +74,12 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
     }
 
     @Override
-    public Instrutor findById(Instrutor instrutor) {
+    public Instrutor findById(Integer id) {
       
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        Instrutor instrutor = new Instrutor();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);

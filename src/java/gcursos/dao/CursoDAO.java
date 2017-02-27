@@ -100,15 +100,15 @@ public class CursoDAO implements GenericoDAO<Curso> {
     }
 
     @Override
-    public Curso findById(Curso curso) {
+    public Curso findById(Integer id) {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        
+        Curso curso = new Curso();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
-            ps.setInt(1, curso.getIdCurso());
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             if (!rs.next()) {
                 System.err.println("Não foi encontrado nenhum registo com o id: " + curso.getIdCurso());

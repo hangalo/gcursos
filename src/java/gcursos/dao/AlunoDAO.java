@@ -89,20 +89,21 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
     }
 
     @Override
-    public Aluno findById(Aluno aluno) {
+    public Aluno findById(Integer id) {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        
+           Aluno aluno = new Aluno();
      
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
-
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
             if (!rs.next()) {
                 System.err.println("Não foi encontrado nenhum registo com o id: ");
             }
-            /*Codigo Aqui*/
+         
 
             popularComDados(aluno, rs);
         } catch (SQLException ex) {

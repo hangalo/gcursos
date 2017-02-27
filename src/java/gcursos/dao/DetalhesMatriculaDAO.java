@@ -89,11 +89,12 @@ public class DetalhesMatriculaDAO implements GenericoDAO<DetalhesMatricula> {
     }
 
     @Override
-    public DetalhesMatricula findById(DetalhesMatricula detalhesMatricula) {
+    public DetalhesMatricula findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        DetalhesMatricula detalhesMatricula = new DetalhesMatricula();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);

@@ -89,11 +89,12 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
     }
 
     @Override
-    public Funcionario findById(Funcionario funcionario) {
+    public Funcionario findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        Funcionario funcionario = new Funcionario();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);

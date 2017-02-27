@@ -88,15 +88,16 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
     }
 
     @Override
-    public CategoriaCurso findById(CategoriaCurso categoriaCurso) {
+    public CategoriaCurso findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        CategoriaCurso categoriaCurso = new CategoriaCurso();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
-            ps.setInt(1, categoriaCurso.getIdCategoriaCurso());
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             if (!rs.next()) {
                 System.err.println("Não foi encontrado nenhum registo com o id: "+ categoriaCurso.getIdCategoriaCurso());

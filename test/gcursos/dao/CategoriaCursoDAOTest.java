@@ -96,9 +96,9 @@ public class CategoriaCursoDAOTest {
         System.out.println("findById");
         CategoriaCurso categoriaCurso = new CategoriaCurso();
         CategoriaCursoDAO instance = new CategoriaCursoDAO();
-        categoriaCurso.setIdCategoriaCurso(2);
         
-        CategoriaCurso result = instance.findById(categoriaCurso);
+        Integer id = 2;
+        CategoriaCurso result = instance.findById(id);
         assertTrue(result!=null);
     
     }
