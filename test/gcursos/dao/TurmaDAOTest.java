@@ -24,21 +24,7 @@ public class TurmaDAOTest {
     public TurmaDAOTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+   
 
     /**
      * Test of save method, of class TurmaDAO.
