@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS `gcursos`.`aluno` (
   `telefone_unitel_aluno` VARCHAR(45) NULL DEFAULT NULL,
   `telefone_movicel_aluno` VARCHAR(45) NULL DEFAULT NULL,
   `email_aluno` VARCHAR(45) NULL DEFAULT NULL,
-  `facebook_aluno` VARCHAR(45) NULL DEFAULT NULL,
+  `facebook_aluno` VARCHAR(100) NULL DEFAULT NULL,
+  `foto_aluno` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id_aluno`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -85,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `gcursos`.`instrutor` (
   `telefone_movicel_aluno` VARCHAR(45) NULL DEFAULT NULL,
   `email_instrutor` VARCHAR(45) NULL DEFAULT NULL,
   `facebook_instrutor` VARCHAR(45) NULL DEFAULT NULL,
+  `foto_instrutor` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id_instrutor`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -105,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `gcursos`.`funcionario` (
   `telefone_movicel_funcionario` VARCHAR(45) NULL DEFAULT NULL,
   `email_funcionario` VARCHAR(45) NULL DEFAULT NULL,
   `facebook_funcionario` VARCHAR(45) NULL DEFAULT NULL,
+  `foto_funcionario` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id_funcionario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;

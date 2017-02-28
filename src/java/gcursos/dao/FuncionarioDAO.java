@@ -5,6 +5,7 @@
  */
 package gcursos.dao;
 
+import gcursos.excepcao.GCursoException;
 import gcursos.modelo.Funcionario;
 import gcursos.util.Conexao;
 import java.sql.Connection;
@@ -24,6 +25,7 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
     private static final String ELIMINAR = "";
     private static final String BUSCAR_POR_CODIGO = "";
     private static final String LISTAR_TUDO = " ";
+    private static final String TOTAL_FUNCIONARIOS = " ";
 
     @Override
     public void save(Funcionario t) {
@@ -89,7 +91,12 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
     }
 
     @Override
-    public Funcionario findById(Funcionario funcionario) {
+    public void delete(Integer id) throws GCursoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Funcionario findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
@@ -110,7 +117,7 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return funcionario;
+        return null;
     }
 
     @Override
@@ -139,6 +146,10 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
     }
 
     @Override
+    public Integer count() throws GCursoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void popularComDados(Funcionario t, ResultSet rs) {
 
     }

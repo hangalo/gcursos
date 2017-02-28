@@ -5,6 +5,7 @@
  */
 package gcursos.dao;
 
+import gcursos.excepcao.GCursoException;
 import gcursos.modelo.CategoriaCurso;
 import gcursos.util.Conexao;
 import java.sql.Connection;
@@ -68,12 +69,17 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
     }
 
     @Override
-    public void delete(CategoriaCurso t) {
+    public void delete(CategoriaCurso t) throws GCursoException {
+        delete(t.getIdCategoriaCurso());
+    }
+
+    @Override
+    public void delete(Integer id) throws GCursoException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public CategoriaCurso findById(CategoriaCurso categoriaCurso) {
+    public CategoriaCurso findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
@@ -87,14 +93,13 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
             }
             /*Codigo Aqui*/
 
-            popularComDados(null, null);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return categoriaCurso;
+        return null;
     }
 
     @Override
@@ -109,7 +114,6 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
             ps.executeQuery();
             while (rs.next()) {
                 /*Codigo Aqui*/
-                popularComDados(null, null);
 
             }
 
@@ -123,7 +127,8 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
     }
 
     @Override
-    public void popularComDados(CategoriaCurso t, ResultSet rs) {
-
+    public Integer count() throws GCursoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

@@ -5,6 +5,7 @@
  */
 package gcursos.dao;
 
+import gcursos.excepcao.GCursoException;
 import gcursos.modelo.Instrutor;
 import gcursos.util.Conexao;
 import java.sql.Connection;
@@ -69,12 +70,17 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
     }
 
     @Override
-    public void delete(Instrutor t) {
+    public void delete(Instrutor t) throws GCursoException {
+        delete(t.getId());
+    }
+
+    @Override
+    public void delete(Integer id) throws GCursoException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Instrutor findById(Instrutor instrutor) {
+    public Instrutor findById(Integer id) {
       
         PreparedStatement ps = null;
         Connection conn = null;
@@ -88,14 +94,13 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
             }
             /*Codigo Aqui*/
 
-            popularComDados(null, null);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return instrutor;
+        return null;
     }
 
     @Override
@@ -110,13 +115,9 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
 
         ps.executeQuery();
             while (rs.next()) {
- /*Codigo Aqui*/
-                popularComDados(null, null);
-
+                /*Codigo Aqui*/
             }
            
-
-            popularComDados(null, null);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
@@ -127,7 +128,8 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
     }
 
     @Override
-    public void popularComDados(Instrutor t, ResultSet rs) {
-       
+    public Integer count() throws GCursoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

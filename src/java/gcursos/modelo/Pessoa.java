@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gcursos.modelo;
 
 import java.util.Date;
@@ -24,11 +19,12 @@ public class Pessoa {
     private String telefoneUnitel;
     private String email;
     private String facebook;
+    private String foto;
 
     public Pessoa() {
     }
 
-    public Pessoa(int id, String primeiroNome, String segundoNome, String sobrenome, Date dataNascimento, Sexo sexo, String telefoneFixo, String telefoneMovicel, String telefoneUnitel, String email, String facebook) {
+    public Pessoa(int id, String primeiroNome, String segundoNome, String sobrenome, Date dataNascimento, Sexo sexo, String telefoneFixo, String telefoneMovicel, String telefoneUnitel, String email, String facebook, String foto) {
         this.id = id;
         this.primeiroNome = primeiroNome;
         this.segundoNome = segundoNome;
@@ -40,6 +36,7 @@ public class Pessoa {
         this.telefoneUnitel = telefoneUnitel;
         this.email = email;
         this.facebook = facebook;
+        this.foto = foto;
     }
 
     public int getId() {
@@ -155,12 +152,21 @@ public class Pessoa {
         return true;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getNomeCompeto() {
+        return primeiroNome + " " + segundoNome + " " + sobrenome;
+    }
+
     @Override
     public String toString() {
-        return "" + primeiroNome + "," + segundoNome + "," + sobrenome + "";
+        return "Pessoa{" + "id=" + id + ", primeiroNome=" + primeiroNome + ", segundoNome=" + segundoNome + ", sobrenome=" + sobrenome + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", telefoneFixo=" + telefoneFixo + ", telefoneMovicel=" + telefoneMovicel + ", telefoneUnitel=" + telefoneUnitel + ", email=" + email + ", facebook=" + facebook + ", foto=" + foto + '}';
     }
-    
-    
-    
     
 }

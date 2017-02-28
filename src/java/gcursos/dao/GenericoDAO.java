@@ -5,6 +5,7 @@
  */
 package gcursos.dao;
 
+import gcursos.excepcao.GCursoException;
 import java.sql.ResultSet;
 import java.util.List;
 
@@ -15,15 +16,18 @@ import java.util.List;
  */
 public interface GenericoDAO<T> {
 
-    void save(T t);
+    void save(T t) throws GCursoException;
 
-    void update(T t);
+    void update(T t) throws GCursoException;
 
-    void delete(T t);
+    void delete(T t) throws GCursoException;
+    
+    void delete(Integer id) throws GCursoException;
 
-    T findById(T t);
+    T findById(Integer id) throws GCursoException;
 
-    List<T> findAll();
+    List<T> findAll() throws GCursoException;
+    
+    Integer count() throws GCursoException;
 
-    void popularComDados(T t, ResultSet rs);
 }
