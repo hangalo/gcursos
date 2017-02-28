@@ -35,7 +35,6 @@ public class CursoMBean {
     public void init() {
 
         curso = new Curso();
-        cursos = new ArrayList<>();
         cursoDAO = new CursoDAO();
         cursos = cursoDAO.findAll();
 

@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.Aluno;
 import gcursos.modelo.Sexo;
 import gcursos.util.Conexao;
@@ -46,14 +40,10 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
 
     @Override
     public void delete(Aluno aluno){
-        delete(aluno.getId());
-    }
-
-    public void delete(Integer id) {
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(ELIMINAR);
-            ps.setInt(1, id);
+            ps.setInt(1, aluno.getId());
 
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -101,7 +91,7 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
         return alunos;
     }
 
-    public Integer count()  throws GCursoException{
+    public Integer count() {
 
         try {
             conn = Conexao.getConnection();
@@ -111,7 +101,7 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             return rs.next() ? rs.getInt("total") : 0;
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getMessage());
-            throw new GCursoException(ex.getMessage());
+            return null;
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
