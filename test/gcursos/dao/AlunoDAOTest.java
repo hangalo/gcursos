@@ -1,6 +1,5 @@
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.Aluno;
 import gcursos.modelo.Sexo;
 import java.text.ParseException;

@@ -13,8 +13,19 @@ public class MessageUtil {
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
     }
     
+    public static void addSucessMessage(FacesContext facesContext, String message) {
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, null, message);
+        facesContext.addMessage(null, facesMessage);
+    }
+    
     public static void addErrorMessage(String message) {
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, null, message);
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
     }
+    
+    public static void addErrorMessage(FacesContext facesContext, String message) {
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, null, message);
+        facesContext.addMessage(null, facesMessage);
+    }
+    
 }
