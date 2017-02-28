@@ -5,7 +5,6 @@
  */
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.Matricula;
 import gcursos.util.Conexao;
 import java.sql.Connection;
@@ -25,7 +24,6 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
     private static final String ELIMINAR = "";
     private static final String BUSCAR_POR_CODIGO = "";
     private static final String LISTAR_TUDO = " ";
-    private static final String TOTAL_MATRICULA = " ";
 
     @Override
     public void save(Matricula t) {
@@ -91,16 +89,12 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
     }
 
     @Override
-    public void delete(Integer id) throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Matricula findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        Matricula matricula = new Matricula();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
@@ -110,13 +104,14 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
             }
             /*Codigo Aqui*/
 
+            popularComDados(null, null);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return matricula;
     }
 
     @Override
@@ -132,6 +127,8 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
             ps.executeQuery();
             while (rs.next()) {
 
+                popularComDados(null, null);
+
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
@@ -143,8 +140,13 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
     }
 
     @Override
-    public Integer count() throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void popularComDados(Matricula t, ResultSet rs) {
+        try {
+            
+            /*Codigo aqui -> Altarar Exception para S*/
 
+        } catch (Exception ex) {
+            System.err.println("Erro ao carregar dados: " + ex.getLocalizedMessage());
+        }
+    }
 }

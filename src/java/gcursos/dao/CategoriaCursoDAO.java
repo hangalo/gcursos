@@ -5,13 +5,13 @@
  */
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.CategoriaCurso;
 import gcursos.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,24 +20,23 @@ import java.util.List;
  */
 public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
 
-    private static final String INSERIR = "";
-    private static final String ACTUALIZAR = "";
-    private static final String ELIMINAR = "";
-    private static final String BUSCAR_POR_CODIGO = "";
-    private static final String LISTAR_TUDO = " ";
+    private static final String INSERIR = "INSERT INTO categoria_curso(categoria_curso) VALUES(?)";
+    private static final String ACTUALIZAR = "UPDATE categoria_curso SET categoria_curso =? WHERE id_categoria_curso =? ";
+    private static final String ELIMINAR = "DELETE FROM categoria_curso WHERE id_categoria_curso =? ";
+    private static final String BUSCAR_POR_CODIGO = "SELECT id_categoria_curso, categoria_curso FROM categoria_curso WHERE id_categoria_curso =?";
+    private static final String LISTAR_TUDO = "SELECT id_categoria_curso, categoria_curso FROM categoria_curso";
 
     @Override
-    public void save(CategoriaCurso t) {
+    public void save(CategoriaCurso categoriaCurso) {
         PreparedStatement ps = null;
         Connection conn = null;
-        if (t == null) {
+        if (categoriaCurso == null) {
             System.err.println("O valor oassado não pode ser nulo!");
         }
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(INSERIR);
-
-            /* Codigo aqui*/
+            ps.setString(1, categoriaCurso.getCategoriaCurso());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -48,17 +47,17 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
     }
 
     @Override
-    public void update(CategoriaCurso t) {
+    public void update(CategoriaCurso categoriaCurso) {
         PreparedStatement ps = null;
         Connection conn = null;
-        if (t == null) {
+        if (categoriaCurso == null) {
             System.err.println("O valor oassado não pode ser nulo!");
         }
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(ACTUALIZAR);
-
-            /* Codigo aqui*/
+            ps.setString(1, categoriaCurso.getCategoriaCurso());
+            ps.setInt(2, categoriaCurso.getIdCategoriaCurso());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -69,13 +68,23 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
     }
 
     @Override
-    public void delete(CategoriaCurso t) throws GCursoException {
-        delete(t.getIdCategoriaCurso());
-    }
+    public void delete(CategoriaCurso categoriaCurso) {
+        PreparedStatement ps = null;
+        Connection conn = null;
 
-    @Override
-    public void delete(Integer id) throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (categoriaCurso == null) {
+            System.err.println("O valor passado nao pode ser nulo");
+        }
+        try {
+            conn = Conexao.getConnection();
+            ps = conn.prepareStatement(ELIMINAR);
+            ps.setInt(1, categoriaCurso.getIdCategoriaCurso());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro ao eliminar dados: " + ex.getLocalizedMessage());
+        } finally {
+            Conexao.closeConnection(conn, ps);
+        }
     }
 
     @Override
@@ -84,22 +93,24 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        CategoriaCurso categoriaCurso = new CategoriaCurso();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
-
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
             if (!rs.next()) {
-                System.err.println("Não foi encontrado nenhum registo com o id: ");
+                System.err.println("Não foi encontrado nenhum registo com o id: "+ categoriaCurso.getIdCategoriaCurso());
             }
-            /*Codigo Aqui*/
-
+          
+            popularComDados(categoriaCurso, rs);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return categoriaCurso;
     }
 
     @Override
@@ -108,12 +119,15 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        List<CategoriaCurso> categoriaCursos = new ArrayList<>();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(LISTAR_TUDO);
-            ps.executeQuery();
+            rs=ps.executeQuery();
             while (rs.next()) {
-                /*Codigo Aqui*/
+                CategoriaCurso categoriaCurso = new CategoriaCurso();
+                popularComDados(categoriaCurso, rs);
+                categoriaCursos.add(categoriaCurso);
 
             }
 
@@ -123,12 +137,17 @@ public class CategoriaCursoDAO implements GenericoDAO<CategoriaCurso> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return categoriaCursos;
     }
 
     @Override
-    public Integer count() throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void popularComDados(CategoriaCurso categoriaCurso, ResultSet rs) {
+        try {
+            categoriaCurso.setIdCategoriaCurso(rs.getInt("id_categoria_curso"));
+            categoriaCurso.setCategoriaCurso(rs.getString("categoria_curso"));
 
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
 }

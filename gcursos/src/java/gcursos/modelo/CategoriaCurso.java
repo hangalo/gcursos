@@ -1,0 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gcursos.modelo;
+
+/**
+ *
+ * @author informatica
+ */
+public class CategoriaCurso {
+    private int idCategoriaCurso;
+    private String categoriaCurso;
+
+    public CategoriaCurso() {
+    }
+
+    public CategoriaCurso(int idCategoriaCurso, String categoriaCurso) {
+        this.idCategoriaCurso = idCategoriaCurso;
+        this.categoriaCurso = categoriaCurso;
+    }
+
+    public int getIdCategoriaCurso() {
+        return idCategoriaCurso;
+    }
+
+    public void setIdCategoriaCurso(int idCategoriaCurso) {
+        this.idCategoriaCurso = idCategoriaCurso;
+    }
+
+    public String getCategoriaCurso() {
+        return categoriaCurso;
+    }
+
+    public void setCategoriaCurso(String categoriaCurso) {
+        this.categoriaCurso = categoriaCurso;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.idCategoriaCurso;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CategoriaCurso other = (CategoriaCurso) obj;
+        if (this.idCategoriaCurso != other.idCategoriaCurso) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoriaCurso{" + "categoriaCurso=" + categoriaCurso + '}';
+    }
+    
+    
+}

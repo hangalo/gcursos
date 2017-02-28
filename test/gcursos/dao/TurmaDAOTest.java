@@ -5,12 +5,9 @@
  */
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.Turma;
 import java.sql.ResultSet;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -27,46 +24,28 @@ public class TurmaDAOTest {
     public TurmaDAOTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+   
 
     /**
      * Test of save method, of class TurmaDAO.
      */
     @Test
     public void testSave() {
-        try {
-            System.out.println("save");
-            Turma turma = new Turma();
-            TurmaDAO instance = new TurmaDAO();
-            turma.setId(1);
-            turma.setNome("A");
-            
-            turma.setId(2);
-            turma.setNome("B");
-            
-            turma.setId(3);
-            turma.setNome("C");
-            turma.setId(4);
-            turma.setNome("D");
-            
-            instance.save(turma);
-        } catch (GCursoException ex) {
-            Logger.getLogger(TurmaDAOTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("save");
+        Turma turma = new Turma();
+        TurmaDAO instance = new TurmaDAO();
+        turma.setIdTurma(1);
+        turma.setTurma("A");
+
+        turma.setIdTurma(2);
+        turma.setTurma("B");
+
+        turma.setIdTurma(3);
+        turma.setTurma("C");
+        turma.setIdTurma(4);
+        turma.setTurma("D");
+
+        instance.save(turma);
 
     }
 
@@ -75,16 +54,12 @@ public class TurmaDAOTest {
      */
     @Test
     public void testUpdate() {
-        try {
-            System.out.println("update");
-            Turma turma = new Turma();
-            TurmaDAO instance = new TurmaDAO();
-            turma.setId(2);
-            turma.setNome("JP");
-            instance.update(turma);
-        } catch (GCursoException ex) {
-            Logger.getLogger(TurmaDAOTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("update");
+        Turma turma = new Turma();
+        TurmaDAO instance = new TurmaDAO();
+        turma.setIdTurma(2);
+        turma.setTurma("JP");
+        instance.update(turma);
 
     }
 
@@ -93,15 +68,11 @@ public class TurmaDAOTest {
      */
     @Test
     public void testDelete() {
-        try {
-            System.out.println("delete");
-            Turma turma = new Turma();
-            TurmaDAO instance = new TurmaDAO();
-            turma.setId(4);
-            instance.delete(turma);
-        } catch (GCursoException ex) {
-            Logger.getLogger(TurmaDAOTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("delete");
+        Turma turma = new Turma();
+        TurmaDAO instance = new TurmaDAO();
+        turma.setIdTurma(4);
+        instance.delete(turma);
 
     }
 
@@ -110,16 +81,16 @@ public class TurmaDAOTest {
      */
     @Test
     public void testFindById() {
-/*        System.out.println("findById");
+        System.out.println("findById");
         Turma turma = new Turma();
 
-       turma.setIdTurma(3);
+Integer id = 3;
         TurmaDAO instance = new TurmaDAO();
        
-        Turma result = instance.findById(turma);
+        Turma result = instance.findById(id);
 
       assertTrue(result!=null);
-*/
+
     }
 
     /**
@@ -127,15 +98,11 @@ public class TurmaDAOTest {
      */
     @Test
     public void testFindAll() {
-        try {
-            System.out.println("findAll");
-            TurmaDAO instance = new TurmaDAO();
-            
-            List<Turma> result = instance.findAll();
-            assertTrue(result.size() > 0);
-        } catch (GCursoException ex) {
-            Logger.getLogger(TurmaDAOTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("findAll");
+        TurmaDAO instance = new TurmaDAO();
+
+        List<Turma> result = instance.findAll();
+        assertTrue(result.size() > 0);
 
     }
 

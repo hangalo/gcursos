@@ -5,7 +5,6 @@
  */
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.Instrutor;
 import gcursos.util.Conexao;
 import java.sql.Connection;
@@ -70,12 +69,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
     }
 
     @Override
-    public void delete(Instrutor t) throws GCursoException {
-        delete(t.getId());
-    }
-
-    @Override
-    public void delete(Integer id) throws GCursoException {
+    public void delete(Instrutor t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -85,6 +79,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        Instrutor instrutor = new Instrutor();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
@@ -94,13 +89,14 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
             }
             /*Codigo Aqui*/
 
+            popularComDados(null, null);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return instrutor;
     }
 
     @Override
@@ -115,9 +111,13 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
 
         ps.executeQuery();
             while (rs.next()) {
-                /*Codigo Aqui*/
+ /*Codigo Aqui*/
+                popularComDados(null, null);
+
             }
            
+
+            popularComDados(null, null);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
@@ -128,8 +128,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
     }
 
     @Override
-    public Integer count() throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void popularComDados(Instrutor t, ResultSet rs) {
+       
     }
-
 }

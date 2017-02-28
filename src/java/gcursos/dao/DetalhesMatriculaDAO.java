@@ -5,7 +5,6 @@
  */
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.DetalhesMatricula;
 import gcursos.util.Conexao;
 import java.sql.Connection;
@@ -90,16 +89,12 @@ public class DetalhesMatriculaDAO implements GenericoDAO<DetalhesMatricula> {
     }
 
     @Override
-    public void delete(Integer id) throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public DetalhesMatricula findById(Integer detalhesMatricula) {
+    public DetalhesMatricula findById(Integer id) {
 
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        DetalhesMatricula detalhesMatricula = new DetalhesMatricula();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
@@ -116,7 +111,7 @@ public class DetalhesMatriculaDAO implements GenericoDAO<DetalhesMatricula> {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return detalhesMatricula;
     }
 
     @Override
@@ -145,10 +140,6 @@ public class DetalhesMatriculaDAO implements GenericoDAO<DetalhesMatricula> {
     }
 
     @Override
-    public Integer count() throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void popularComDados(DetalhesMatricula t, ResultSet rs) {
 
     }

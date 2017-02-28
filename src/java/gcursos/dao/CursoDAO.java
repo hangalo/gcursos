@@ -5,7 +5,6 @@
  */
 package gcursos.dao;
 
-import gcursos.excepcao.GCursoException;
 import gcursos.modelo.CategoriaCurso;
 import gcursos.modelo.Curso;
 import gcursos.util.Conexao;
@@ -27,7 +26,6 @@ public class CursoDAO implements GenericoDAO<Curso> {
     private static final String ELIMINAR = "DELETE FROM curso WHERE id_curso = ?";
     private static final String BUSCAR_POR_CODIGO = "SELECT id_curso,nome_curso, requisito_curso, conteudo_curso, carga_horaria_curso, preco_curso, categoria_curso  FROM curso c INNER JOIN categoria_curso cg ON c.id_categoria_curso = cg.id_categoria_curso WHERE id_curso = ?;";
     private static final String LISTAR_TUDO = "SELECT id_curso,nome_curso, requisito_curso, conteudo_curso, carga_horaria_curso, preco_curso, categoria_curso  FROM curso c INNER JOIN categoria_curso cg ON c.id_categoria_curso = cg.id_categoria_curso; ";
-    private static final String TOTAL_CURSO = "";
 
     @Override
     public void save(Curso curso) {
@@ -102,32 +100,27 @@ public class CursoDAO implements GenericoDAO<Curso> {
     }
 
     @Override
-    public void delete(Integer id) throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Curso findById(Integer id) {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        
+        Curso curso = new Curso();
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (!rs.next()) {
-                System.err.println("Não foi encontrado nenhum registo com o id: " + id);
+                System.err.println("Não foi encontrado nenhum registo com o id: " + curso.getIdCurso());
             }
-            //popularComDados(id, rs);
+            popularComDados(curso, rs);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
 
-        return null;
+        return curso;
     }
 
     @Override
@@ -156,10 +149,6 @@ public class CursoDAO implements GenericoDAO<Curso> {
     }
 
     @Override
-    public Integer count() throws GCursoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void popularComDados(Curso curso, ResultSet rs) {
         try {
 

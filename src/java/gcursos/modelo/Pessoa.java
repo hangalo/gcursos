@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package gcursos.modelo;
 
 import java.util.Date;
@@ -8,7 +13,7 @@ import java.util.Date;
  */
 public class Pessoa {
     
-    private int id;
+     private int id;
     private String primeiroNome;
     private String segundoNome;
     private String sobrenome;
@@ -168,5 +173,4 @@ public class Pessoa {
     public String toString() {
         return "Pessoa{" + "id=" + id + ", primeiroNome=" + primeiroNome + ", segundoNome=" + segundoNome + ", sobrenome=" + sobrenome + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", telefoneFixo=" + telefoneFixo + ", telefoneMovicel=" + telefoneMovicel + ", telefoneUnitel=" + telefoneUnitel + ", email=" + email + ", facebook=" + facebook + ", foto=" + foto + '}';
     }
-    
 }

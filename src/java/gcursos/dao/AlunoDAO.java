@@ -35,22 +35,21 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
     private ResultSet rs;
 
     @Override
-    public void save(Aluno aluno) throws GCursoException{
+    public void save(Aluno aluno) {
         addOrEditAluno(INSERIR, aluno);
     }
 
     @Override
-    public void update(Aluno aluno) throws GCursoException{
+    public void update(Aluno aluno){
         addOrEditAluno(ACTUALIZAR, aluno);
     }
 
     @Override
-    public void delete(Aluno aluno) throws GCursoException{
+    public void delete(Aluno aluno){
         delete(aluno.getId());
     }
 
-    @Override
-    public void delete(Integer id) throws GCursoException {
+    public void delete(Integer id) {
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(ELIMINAR);
@@ -59,14 +58,13 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Erro ao inserir dados: " + ex.getMessage());
-            throw new GCursoException(ex.getMessage());
         } finally {
             Conexao.closeConnection(conn, ps);
         }
     }
 
     @Override
-    public Aluno findById(Integer id)  throws GCursoException{
+    public Aluno findById(Integer id) {
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
@@ -75,8 +73,8 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             rs = ps.executeQuery();
             return rs.next() ? getAlunoFromResultSet(rs) : null;
         } catch (SQLException ex) {
-            System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
-            throw new GCursoException(ex.getMessage());
+            System.err.println("Erro ao ler dados: " + ex.getMessage());
+            return null;
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
@@ -84,7 +82,7 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
     }
 
     @Override
-    public List<Aluno> findAll()  throws GCursoException{
+    public List<Aluno> findAll() {
         List<Aluno> alunos = new ArrayList<>();
         try {
             conn = Conexao.getConnection();
@@ -95,8 +93,7 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
                 alunos.add(getAlunoFromResultSet(rs));
             }
         } catch (SQLException ex) {
-            System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
-            throw new GCursoException(ex.getMessage());
+            System.err.println("Erro ao ler dados: " + ex.getMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
@@ -104,7 +101,6 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
         return alunos;
     }
 
-    @Override
     public Integer count()  throws GCursoException{
 
         try {
@@ -114,14 +110,14 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             rs = ps.executeQuery();
             return rs.next() ? rs.getInt("total") : 0;
         } catch (SQLException ex) {
-            System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
+            System.err.println("Erro ao ler dados: " + ex.getMessage());
             throw new GCursoException(ex.getMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
     }
 
-    private void addOrEditAluno(String SQL, Aluno aluno) throws GCursoException {
+    private void addOrEditAluno(String SQL, Aluno aluno) {
         try {
             conn = Conexao.getConnection();
 
@@ -146,11 +142,9 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             ps.executeUpdate();
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
-            throw new GCursoException(ex.getMessage());
         } finally {
             Conexao.closeConnection(conn, ps);
         }
-
     }
 
     private Aluno getAlunoFromResultSet(ResultSet resultSet) throws SQLException {
@@ -169,5 +163,10 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
         aluno.setFoto(resultSet.getString("foto_aluno"));
 
         return aluno;
+    }
+
+    @Override
+    public void popularComDados(Aluno t, ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

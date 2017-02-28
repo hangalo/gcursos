@@ -14,37 +14,37 @@ import java.io.Serializable;
 public class Turma implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private int id;
-    private String nome;
+    private int idTurma;
+    private String turma;
 
     public Turma() {
     }
 
     public Turma(int idTurma, String turma) {
-        this.id = idTurma;
-        this.nome = turma;
+        this.idTurma = idTurma;
+        this.turma = turma;
     }
 
-    public int getId() {
-        return id;
+    public int getIdTurma() {
+        return idTurma;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTurma(int idTurma) {
+        this.idTurma = idTurma;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTurma() {
+        return turma;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTurma(String turma) {
+        this.turma = turma;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + this.id;
+        hash = 67 * hash + this.idTurma;
         return hash;
     }
 
@@ -60,7 +60,7 @@ public class Turma implements Serializable{
             return false;
         }
         final Turma other = (Turma) obj;
-        if (this.id != other.id) {
+        if (this.idTurma != other.idTurma) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Turma implements Serializable{
     
     @Override
     public String toString() {
-        return "Turma{" + "turma=" + nome + '}';
+        return "Turma{" + "turma=" + turma + '}';
     }
     
     

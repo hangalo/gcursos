@@ -25,7 +25,7 @@ public class AlunoDAOTest {
     }
     
     @Test
-    public void inserirAluno() throws ParseException, GCursoException {
+    public void inserirAluno() throws ParseException {
         Aluno aluno = new Aluno();
         
         aluno.setPrimeiroNome("Francisco");
@@ -47,7 +47,7 @@ public class AlunoDAOTest {
     }
     
     @Test
-    public void actualizarAluno() throws ParseException, GCursoException {
+    public void actualizarAluno() throws ParseException {
         alunoDAO = new AlunoDAO();
         Aluno aluno = alunoDAO.findById(1);
         
@@ -70,7 +70,7 @@ public class AlunoDAOTest {
     }
     
     @Test
-    public void buscarTodos() throws ParseException, GCursoException {
+    public void buscarTodos() throws ParseException {
         alunoDAO = new AlunoDAO();
         List<Aluno> alunos = alunoDAO.findAll();
         
@@ -80,7 +80,7 @@ public class AlunoDAOTest {
     }
     
     @Test
-    public void excluirAluno() throws ParseException, GCursoException {
+    public void excluirAluno() throws ParseException {
         alunoDAO = new AlunoDAO();
         Aluno aluno = alunoDAO.findById(2);
         
