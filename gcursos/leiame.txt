@@ -1,0 +1,61 @@
+Projecto gcursos
+
+
+
+Padrao de Pragramação.
+
+Vamos aternos rigorosamente às conveções da programação em Java.
+Nos métodos com excepções. 
+Vamos trata-los com as estruturas standard try cach, sem criar classes especificas.
+
+Ja implementei o DAO da Turma, do Curso e CategoriaCurso que podem servir de referencia.
+
+Para cada DAO fazer o respectivo Teste Unitário com JUnit
+
+Como ate aqui apenas duas pessoas candidataram-se como programadores as tarefas ficam divididas da seguinte forma
+
+
+>>Nelson Chandimba da Silva ->dismao16@gmail.com
+
+responsabiliza-se pelas implementacoes relativas às classes
+
+Aluno
+Pagamento
+Turma
+
+
+
+>>>Francisco Capita - ciscocapita@gmail.com
+responsabiliza-se pelas implementacoes relativas às classes
+
+Instrutor
+Funcionario
+CategoriaCurso
+
+>>Joaquim Jose Hangalo -> joajoshang@gmail.com
+
+responsabiliza-se pelas implementacoes relativas às classes
+
+Matricula e Detalhes
+Curso  
+
+
+Fases e actividades
+
+A I fase será para a implementação do CRUD. 
+Os formularios serão apenas de 2 colunas dentro de um p:panel do Primefaces.
+Para a listagem vamos usar p:dataTable.
+
+A II fase será de implementaçao de buscas(pesquisas) personalizadas...
+Para a definição destas(consutas) podemos ir trocando emails a proposito e fazemos um lista de consultas possiveis.
+
+A idea final do projecto é criarmos uma aplicação utilizavel, pratica e concreta e depois a comunidade pode baixar e adaptar, melhorar
+Um projecto Open Source
+
+
+Emails
+joajoshang@gmail.com,
+ciscocapita@gmail.com,
+dismao16@gmail.com
+
+
