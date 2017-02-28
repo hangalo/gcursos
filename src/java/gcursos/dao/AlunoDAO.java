@@ -54,7 +54,6 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(ELIMINAR);
             ps.setInt(1, id);
-
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Erro ao inserir dados: " + ex.getMessage());

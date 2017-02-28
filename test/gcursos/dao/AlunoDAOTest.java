@@ -27,7 +27,7 @@ public class AlunoDAOTest {
     @Test
     public void inserirAluno() throws ParseException {
         Aluno aluno = new Aluno();
-        
+        aluno.setId(1);
         aluno.setPrimeiroNome("Francisco");
         aluno.setSegundoNome("");
         aluno.setSobrenome("Capita");
@@ -40,7 +40,19 @@ public class AlunoDAOTest {
         aluno.setTelefoneMovicel("918652437");
         aluno.setFoto("foto/ciscocapita.png");
         
-        assertTrue("INSERT: O aluno não pode ser nulo", aluno != null);
+     Aluno aluno2 = new Aluno();
+        aluno2.setId(2);
+        aluno2.setPrimeiroNome("Francisco");
+        aluno2.setSegundoNome("");
+        aluno2.setSobrenome("Capita");
+        aluno2.setDataNascimento(formatadorDeData.parse("1990-05-05"));
+        aluno2.setSexo(Sexo.MASCULINO);
+        aluno2.setEmail("ciscocapita@yahoo.com");
+        aluno2.setFacebook("https://www.facebook.com/cisco.capita");
+        aluno2.setTelefoneFixo("222000003");
+        aluno2.setTelefoneUnitel("921000003");
+        aluno2.setTelefoneMovicel("918652437");
+        aluno2.setFoto("foto/ciscocapita.png");
         
         alunoDAO.save(aluno);
         System.out.println("Aluno salvo com sucesso");

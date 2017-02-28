@@ -104,15 +104,16 @@ public class CursoDAO implements GenericoDAO<Curso> {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        Curso curso = new Curso();
+        Curso curso = null;
         try {
             conn = Conexao.getConnection();
             ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (!rs.next()) {
-                System.err.println("Não foi encontrado nenhum registo com o id: " + curso.getIdCurso());
+                System.err.println("Não foi encontrado nenhum registo com o id: " + id);
             }
+            curso = new Curso();
             popularComDados(curso, rs);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
