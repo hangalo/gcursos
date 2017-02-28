@@ -7,6 +7,7 @@ package gcursos.mb;
 
 import gcursos.dao.CursoDAO;
 import gcursos.modelo.Curso;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -22,7 +23,9 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "cursoMBean")
 @ViewScoped
-public class CursoMBean {
+public class CursoMBean implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private Curso curso;
     private List<Curso> cursos;

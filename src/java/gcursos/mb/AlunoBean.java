@@ -18,6 +18,8 @@ import javax.inject.Named;
 @ViewScoped
 public class AlunoBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private AlunoDAO alunoDAO;
     private List<Aluno> alunos;
     private Aluno aluno;

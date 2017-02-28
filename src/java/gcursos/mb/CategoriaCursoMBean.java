@@ -5,6 +5,7 @@
  */
 package gcursos.mb;
 
+import java.io.Serializable;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 
@@ -14,7 +15,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "categoriaCursoMBean")
 @ViewScoped
-public class CategoriaCursoMBean {
+public class CategoriaCursoMBean implements Serializable{
 
     /**
      * Creates a new instance of CategoriaCursoMBean
