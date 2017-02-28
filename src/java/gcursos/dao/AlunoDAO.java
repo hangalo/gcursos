@@ -132,7 +132,7 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
             ps.setString(9, aluno.getEmail());
             ps.setString(10, aluno.getFacebook());
             ps.setString(10, aluno.getFacebook());
-            ps.setString(11, aluno.getFoto());
+            ps.setBytes(11, aluno.getFoto());
 
             if (aluno.getId() > 0) {
                 ps.setInt(12, aluno.getId());
@@ -159,7 +159,7 @@ public class AlunoDAO implements GenericoDAO<Aluno> {
         aluno.setTelefoneMovicel(resultSet.getString("telefone_movicel_aluno"));
         aluno.setEmail(resultSet.getString("email_aluno"));
         aluno.setFacebook(resultSet.getString("facebook_aluno"));
-        aluno.setFoto(resultSet.getString("foto_aluno"));
+        aluno.setFoto(resultSet.getBytes("foto_aluno"));
 
         return aluno;
     }

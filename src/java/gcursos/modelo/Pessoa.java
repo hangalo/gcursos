@@ -24,12 +24,12 @@ public class Pessoa {
     private String telefoneUnitel;
     private String email;
     private String facebook;
-    private String foto;
+  
 
     public Pessoa() {
     }
 
-    public Pessoa(int id, String primeiroNome, String segundoNome, String sobrenome, Date dataNascimento, Sexo sexo, String telefoneFixo, String telefoneMovicel, String telefoneUnitel, String email, String facebook, String foto) {
+    public Pessoa(int id, String primeiroNome, String segundoNome, String sobrenome, Date dataNascimento, Sexo sexo, String telefoneFixo, String telefoneMovicel, String telefoneUnitel, String email, String facebook) {
         this.id = id;
         this.primeiroNome = primeiroNome;
         this.segundoNome = segundoNome;
@@ -41,7 +41,6 @@ public class Pessoa {
         this.telefoneUnitel = telefoneUnitel;
         this.email = email;
         this.facebook = facebook;
-        this.foto = foto;
     }
 
     public int getId() {
@@ -157,13 +156,7 @@ public class Pessoa {
         return true;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+    
 
     public String getNomeCompeto() {
         return primeiroNome + " " + segundoNome + " " + sobrenome;
@@ -171,6 +164,6 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", primeiroNome=" + primeiroNome + ", segundoNome=" + segundoNome + ", sobrenome=" + sobrenome + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", telefoneFixo=" + telefoneFixo + ", telefoneMovicel=" + telefoneMovicel + ", telefoneUnitel=" + telefoneUnitel + ", email=" + email + ", facebook=" + facebook + ", foto=" + foto + '}';
+        return this.primeiroNome +""+this.segundoNome;
     }
 }
