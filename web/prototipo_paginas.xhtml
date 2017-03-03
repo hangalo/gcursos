@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template_base/template_base.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <h:panelGrid columns="2">
+                    <h:form>
+                        <h:inputText size="50"/>
+                        <p:commandButton type="button" value="Pesquisar" action="#"/>
+                    </h:form>
+                    <h:form>
+                        <p:commandButton value="Novo Curso" type="button" onclick="PF('novocurso').show();" />
+                    </h:form>
+                </h:panelGrid>
+
+
+                <p:dialog header="Novo Curso" widgetVar="novocurso" modal="true" height="380" width="550">
+                    <p:panel header="Titulo">
+                        <h:form>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value=""/>
+                                <p:inputText/>
+                                <p:outputLabel value=""/>
+                                <p:inputText/>
+                                <p:outputLabel value=""/>
+                                <p:inputText/>
+                            </h:panelGrid>
+                        </h:form>   
+                    </p:panel>
+
+                </p:dialog> 
+
+
+                <f:view>
+                    <h:form>
+                        <h:dataTable value="#" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coluna 1"/>
+                                </f:facet>
+                                <h:outputText value="#{item}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coluna 2"/>
+                                </f:facet>
+                                <h:outputText value="#{item}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coluna 3"/>
+                                </f:facet>
+                                <h:outputText value="#{item}"/>
+                            </p:column>
+
+                            <p:column headerText="Acções" style="width: 116px">
+                                <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
+                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                </p:commandButton>
+                                <p:commandButton icon="ui-icon-trash" action="#">
+                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                </p:commandButton>
+
+
+                            </p:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+                <h:form id="formEditar" >
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:dialog header="Editar" id="editar" widgetVar="dialogoEditar" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="380" width="550">
+
+
+                        <p:panel header="Titulo">
+
+                            <h:panelGrid columns="2">
+                                  <p:outputLabel value=""/>
+                                <p:inputText/>
+                                 <p:outputLabel value=""/>
+                                <p:inputText/>
+                                 <p:outputLabel value=""/>
+                                <p:inputText/>
+                                
+                                <p:inputTextarea id="observacoes" value="#" title="Note" rows="2" cols="40" counter="display" maxlength="100" counterTemplate="restam apenas {0} caracteres ." autoResize="false" />
+                                <h:panelGroup/>
+                                <h:outputText id="display" />
+
+                            </h:panelGrid>
+
+                        </p:panel>
+
+
+                        <p:commandButton actionListener="#" value="Guardar"  update="growl" ajax="false"/>
+
+                        <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
+
+                    </p:dialog>
+                </h:form> 
+
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

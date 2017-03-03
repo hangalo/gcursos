@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -16,7 +19,225 @@
             </ui:define>
 
             <ui:define name="content">
-                content
+                <h:panelGrid columns="2">
+                    <h:form>
+                        <h:inputText size="50"/>
+                        <p:commandButton type="button" value="Pesquisar" action="#"/>
+                    </h:form>
+                    <h:form>
+                        <p:commandButton value="Novo Curso" type="button" onclick="PF('novocurso').show();" />
+                    </h:form>
+                </h:panelGrid>
+
+
+                <p:dialog header="Regisar" widgetVar="novocurso" modal="true" height="450" width="550">
+                    <p:panel header="Novo Curso" id="regisarNovoCurso">
+                        <h:form>
+                            <p:growl id="sucesso-guardar" showDetail="true" sticky="true"/>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Curso"/>
+                                <p:inputText value="#{cursoMBean.curso.nomeCurso}" size="50"/>
+                                <p:outputLabel value="Categoria"/>
+                                <p:selectOneMenu value="#{cursoMBean.curso.categoriaCurso}" converter="categoriaCursoConverter">
+                                    <f:selectItem itemLabel="== Selecionar Categoria ==" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems value="#{cursoMBean.categoriaCursos}" var="categoriaCurso" itemValue="#{categoriaCurso}" itemLabel="#{categoriaCurso.categoriaCurso}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Carga horária"/>
+                                <p:inputText value="#{cursoMBean.curso.cargaHorariaCurso}"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Conteudo Programático"/>
+                                <h:panelGroup>
+                                    <p:inputTextarea id="conteudo" value="#{cursoMBean.curso.conteudoCurso}" title="Conteudo" rows="2" cols="70" counter="contaLetrasConteudo" maxlength="200" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:panelGroup/>
+                            <h:outputText id="contaLetrasConteudo" />
+
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Requisitos"/>
+                                <h:panelGroup>
+                                    <p:inputTextarea id="requisito" value="#{cursoMBean.curso.requisitosCurso}" title="Requisitos" rows="2" cols="40" counter="contaLetrasRequisitos" maxlength="100" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:outputText id="contaLetrasRequisitos" />
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Preço"/>
+                                <p:inputText value="#{cursoMBean.curso.precoCurso}"/>
+                            </h:panelGrid>
+
+                            <p:commandButton actionListener="#{cursoMBean.save}" value="Guardar"  update="sucesso-guardar" ajax="false"/>
+
+                        </h:form>   
+                    </p:panel>
+
+                </p:dialog> 
+
+
+                <f:view>
+                    <h:form>
+                        <h:dataTable value="#{cursoMBean.cursos}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idCurso}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Curso"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nomeCurso}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Categoria"/>
+                                </f:facet>
+                                <h:outputText value="#{item.categoriaCurso}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Preco"/>
+                                </f:facet>
+                                <h:outputText value="#{item.precoCurso}"/>
+                            </p:column>
+                            
+                             <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Carga horária"/>
+                                </f:facet>
+                                 <h:outputText value="#{item.cargaHorariaCurso}"/>
+                            </p:column>
+
+                            <p:column style="width: 116px">
+                                 <f:facet name="header">
+                                    <h:outputText value="Acções"/>
+                                </f:facet>
+                                <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
+                                    <f:setPropertyActionListener target="#{cursoMBean.curso}" value="#{item}"/>
+                                </p:commandButton>
+                                <p:commandButton icon="	ui-icon-search" update=":formVer:ver" oncomplete="PF('dialogoVer').show();" >
+                                    <f:setPropertyActionListener target="#{cursoMBean.curso}" value="#{item}"/>
+                                </p:commandButton>
+
+                                <p:commandButton icon="ui-icon-trash" actionListener="#{cursoMBean.delete}">
+                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                </p:commandButton>
+
+
+                            </p:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+                <h:form id="formEditar" >
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:dialog header="Editar" id="editar" widgetVar="dialogoEditar" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="450" width="550">
+
+
+                        <p:panel header="Editar dados do curso">
+
+                            <p:growl id="sucesso-editar" showDetail="true" sticky="true"/>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Curso"/>
+                                <p:inputText value="#{cursoMBean.curso.nomeCurso}" size="50"/>
+                                <p:outputLabel value="Categoria"/>
+                                <p:selectOneMenu value="#{cursoMBean.curso.categoriaCurso}" converter="categoriaCursoConverter">
+                                    <f:selectItem itemLabel="== Selecionar Categoria ==" itemValue="#{null}" noSelectionOption="true"/>
+                                    <f:selectItems value="#{cursoMBean.categoriaCursos}" var="categoriaCurso" itemValue="#{categoriaCurso}" itemLabel="#{categoriaCurso.categoriaCurso}"/>
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Carga horária"/>
+                                <p:inputText value="#{cursoMBean.curso.cargaHorariaCurso}"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Conteudo Programático"/>
+                                <h:panelGroup>
+                                    <p:inputTextarea id="conteudo" value="#{cursoMBean.curso.conteudoCurso}" title="Conteudo" rows="2" cols="70" counter="contaLetrasConteudo" maxlength="200" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:panelGroup/>
+                            <h:outputText id="contaLetrasConteudo" />
+
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Requisitos"/>
+                                <h:panelGroup>
+                                    <p:inputTextarea id="requisito" value="#{cursoMBean.curso.requisitosCurso}" title="Requisitos" rows="2" cols="40" counter="contaLetrasRequisitos" maxlength="100" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:outputText id="contaLetrasRequisitos" />
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Preço"/>
+                                <p:inputText value="#{cursoMBean.curso.precoCurso}"/>
+                            </h:panelGrid>
+
+                            <p:commandButton actionListener="#{cursoMBean.edit}" value="Guardar"  update="sucesso-editar" ajax="false"/>
+
+
+                        </p:panel>                        
+
+                        <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
+
+                    </p:dialog>
+                </h:form> 
+
+
+
+                <h:form id="formVer" >
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:dialog header="Ver detalhes" id="ver" widgetVar="dialogoVer" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="450" width="550">
+
+
+                        <p:panel header="Detalhes do curso">
+
+                            <p:growl id="sucesso-editar" showDetail="true" sticky="true"/>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Curso"/>
+                                <p:outputLabel value="#{cursoMBean.curso.nomeCurso}"/>
+                                <p:outputLabel value="Categoria"/>
+                                <p:outputLabel value="#{cursoMBean.curso.categoriaCurso}" />
+
+                                <p:outputLabel value="Carga horária"/>
+                                <outputLabel value="#{cursoMBean.curso.cargaHorariaCurso}"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Conteudo Programático"/>
+                                <h:panelGroup>
+                                    <p:inputTextarea id="conteudo" value="#{cursoMBean.curso.conteudoCurso}" title="Conteudo" rows="2" cols="70"  autoResize="false" disabled="true"/>
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:panelGroup/>
+                            <h:outputText/>
+
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Requisitos"/>
+                                <h:panelGroup>
+                                    <p:inputTextarea id="requisito" value="#{cursoMBean.curso.requisitosCurso}" title="Requisitos" rows="2" cols="40" autoResize="false" disabled="true"/>
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            <h:outputText/>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value="Preço"/>
+                                <p:outputLabel value="#{cursoMBean.curso.precoCurso}"/>
+                            </h:panelGrid>                         
+
+
+                        </p:panel>                        
+
+                        <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
+
+                    </p:dialog>
+                </h:form> 
+
+
+
+
             </ui:define>
 
             <ui:define name="bottom">

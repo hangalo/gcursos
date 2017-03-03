@@ -5,7 +5,9 @@
  */
 package gcursos.mb;
 
+import gcursos.dao.CategoriaCursoDAO;
 import gcursos.dao.CursoDAO;
+import gcursos.modelo.CategoriaCurso;
 import gcursos.modelo.Curso;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -23,13 +26,15 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "cursoMBean")
 @ViewScoped
-public class CursoMBean implements Serializable{
+public class CursoMBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Curso curso;
     private List<Curso> cursos;
     private CursoDAO cursoDAO;
+    private CategoriaCursoDAO categoriaCursoDAO;
+    private List<CategoriaCurso> categoriaCursos;
 
     public CursoMBean() {
     }
@@ -39,7 +44,10 @@ public class CursoMBean implements Serializable{
 
         curso = new Curso();
         cursoDAO = new CursoDAO();
+        categoriaCursoDAO = new CategoriaCursoDAO();
         cursos = cursoDAO.findAll();
+        categoriaCursos = new ArrayList<>();
+        categoriaCursos = categoriaCursoDAO.findAll();
 
     }
 
@@ -59,21 +67,30 @@ public class CursoMBean implements Serializable{
         this.cursos = cursos;
     }
 
-    public void finishEdit(ActionEvent actionEvent) {
+    public List<CategoriaCurso> getCategoriaCursos() {
+
+        return categoriaCursos;
+    }
+
+    public void setCategoriaCursos(List<CategoriaCurso> categoriaCursos) {
+        this.categoriaCursos = categoriaCursos;
+    }
+
+    public void edit(ActionEvent actionEvent) {
         cursoDAO.update(curso);
         cursos = null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Acutalizar", "Dados actualizados com sucesso"));
 
     }
 
-    public void salvare(ActionEvent actionEvent) {
+    public void save(ActionEvent actionEvent) {
         cursoDAO.save(curso);
         curso = new Curso();
-        
+        cursos = null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardar", "Dados guardados com sucesso"));
     }
 
-    public void eliminare(ActionEvent actionEvent) {
+    public void delete(ActionEvent actionEvent) {
         cursoDAO.delete(curso);
         curso = new Curso();
 
@@ -81,4 +98,7 @@ public class CursoMBean implements Serializable{
 
     }
 
+    public void reset() {
+        RequestContext.getCurrentInstance().reset("regisarNovoCurso");
+    }
 }

@@ -64,7 +64,7 @@ public class CategoriaCurso {
 
     @Override
     public String toString() {
-        return "CategoriaCurso{" + "categoriaCurso=" + categoriaCurso + '}';
+        return this.categoriaCurso;
     }
     
     
