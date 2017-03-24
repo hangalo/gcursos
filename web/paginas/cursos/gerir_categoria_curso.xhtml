@@ -10,6 +10,8 @@
 
         <ui:composition template="./../../WEB-INF/template_base/template_base.xhtml">
 
+            
+            
             <ui:define name="top">
                 top
             </ui:define>
@@ -25,70 +27,61 @@
                         <p:commandButton type="button" value="Pesquisar" action="#"/>
                     </h:form>
                     <h:form>
-                        <p:commandButton value="Novo Curso" type="button" onclick="PF('novocurso').show();" />
+                        <p:commandButton value="Nova Categoria" type="button" onclick="PF('novaCategoria').show();" />
                     </h:form>
                 </h:panelGrid>
 
-                <h:form>
+                <h:form id="formGuardarCategoriaCurso">
                      <p:growl id="sucesso-guardar" showDetail="true" sticky="true"/>
-                    
-                    <p:dialog header="Novo Curso" widgetVar="novocurso" modal="true" height="380" width="550">
-                        <p:panel header="Titulo">
-
-
-                           
-
+                <p:dialog header="Nova Categoria" widgetVar="novaCategoria" modal="true" height="380" width="550">
+                    <p:panel header="Titulo">
+                      
                             <h:panelGrid columns="2">
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
+                                <p:outputLabel value="Categoria"/>
+                                <p:inputText value="#{categoriaCursoMBean.categoriaCurso.categoriaCurso}"/>
+                                
                             </h:panelGrid>
+                        
+                          <p:commandButton actionListener="#{categoriaCursoMBean.save}" value="Guardar"  update="sucesso-guardar" ajax="false"/>
+                       
+                    </p:panel>
 
-                        </p:panel>
+                </p:dialog> 
+       </h:form>   
 
-                    </p:dialog> 
-                </h:form>  
 
-                <f:view>
-                    <h:form>
-                        <h:dataTable value="#" var="item">
+                
+                <h:form id="formTabela">
+                    <h:dataTable value="#{categoriaCursoMBean.categoriaCursos}" var="item">
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Coluna 1"/>
+                                    <h:outputText value="Id:"/>
                                 </f:facet>
-                                <h:outputText value="#{item}"/>
+                                <h:outputText value="#{item.idCategoriaCurso}"/>
                             </p:column>
 
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Coluna 2"/>
+                                    <h:outputText value="Categoria"/>
                                 </f:facet>
-                                <h:outputText value="#{item}"/>
+                                <h:outputText value="#{item.categoriaCurso}"/>
                             </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Coluna 3"/>
-                                </f:facet>
-                                <h:outputText value="#{item}"/>
-                            </p:column>
+                            
 
                             <p:column headerText="Acções" style="width: 116px">
                                 <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
-                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                    <f:setPropertyActionListener target="#{categoriaCursoMBean.categoriaCurso}" value="#{item}"/>
                                 </p:commandButton>
-                                <p:commandButton icon="ui-icon-trash" actionListener="#">
-                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                <p:commandButton icon="ui-icon-trash" actionListener="#{categoriaCursoMBean.delete}">
+                                    <f:setPropertyActionListener target="#{categoriaCursoMBean.categoriaCurso}" value="#{item}"/>
                                 </p:commandButton>
 
 
                             </p:column>
                         </h:dataTable>
                     </h:form>
-                </f:view>
+                
 
                 <h:form id="formEditar" >
                     <p:growl id="growl" showDetail="true" sticky="true"/>
@@ -98,23 +91,20 @@
                         <p:panel header="Titulo">
 
                             <h:panelGrid columns="2">
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-
-                                <p:inputTextarea id="observacoes" value="#" title="Note" rows="2" cols="40" counter="display" maxlength="100" counterTemplate="restam apenas {0} caracteres ." autoResize="false" />
-                                <h:panelGroup/>
-                                <h:outputText id="display" />
+                                  <p:outputLabel value="Id"/>
+                                  <p:inputText value="#{categoriaCursoMBean.categoriaCurso.idCategoriaCurso}"  disabled="true"/>
+                                <p:outputLabel value="Categoria" />
+                                <p:inputText value="#{categoriaCursoMBean.categoriaCurso.categoriaCurso}" />
+                                
+                                
+                                
 
                             </h:panelGrid>
 
                         </p:panel>
 
 
-                        <p:commandButton actionListener="#" value="Guardar"  update="growl" ajax="false"/>
+                        <p:commandButton actionListener="#{categoriaCursoMBean.edit}" value="Guardar"  update="growl" ajax="false"/>
 
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
 

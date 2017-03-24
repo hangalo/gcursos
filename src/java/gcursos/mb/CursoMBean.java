@@ -99,6 +99,6 @@ public class CursoMBean implements Serializable {
     }
 
     public void reset() {
-        RequestContext.getCurrentInstance().reset("regisarNovoCurso");
+        RequestContext.getCurrentInstance().reset("formRegisarNovoCurso");
     }
 }

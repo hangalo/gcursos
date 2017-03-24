@@ -32,7 +32,7 @@
 
                 <p:dialog header="Regisar" widgetVar="novocurso" modal="true" height="450" width="550">
                     <p:panel header="Novo Curso" id="regisarNovoCurso">
-                        <h:form>
+                        <h:form id="formRegisarNovoCurso">
                             <p:growl id="sucesso-guardar" showDetail="true" sticky="true"/>
                             <h:panelGrid columns="2">
                                 <p:outputLabel value="Curso"/>
@@ -50,7 +50,7 @@
                             <h:panelGrid columns="1">
                                 <p:outputLabel value="Conteudo Programático"/>
                                 <h:panelGroup>
-                                    <p:inputTextarea id="conteudo" value="#{cursoMBean.curso.conteudoCurso}" title="Conteudo" rows="2" cols="70" counter="contaLetrasConteudo" maxlength="200" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
+                                    <p:inputTextarea id="conteudo" value="#{cursoMBean.curso.conteudoCurso}" title="Conteudo" rows="2" cols="55" counter="contaLetrasConteudo" maxlength="200" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
                                 </h:panelGroup>
                             </h:panelGrid>
                             <h:panelGroup/>
@@ -59,7 +59,7 @@
                             <h:panelGrid columns="1">
                                 <p:outputLabel value="Requisitos"/>
                                 <h:panelGroup>
-                                    <p:inputTextarea id="requisito" value="#{cursoMBean.curso.requisitosCurso}" title="Requisitos" rows="2" cols="40" counter="contaLetrasRequisitos" maxlength="100" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
+                                    <p:inputTextarea id="requisito" value="#{cursoMBean.curso.requisitosCurso}" title="Requisitos" rows="2" cols="55" counter="contaLetrasRequisitos" maxlength="100" counterTemplate="Restam apenas {0} caracteres ." autoResize="false" />
                                 </h:panelGroup>
                             </h:panelGrid>
                             <h:outputText id="contaLetrasRequisitos" />
@@ -125,7 +125,7 @@
                                 </p:commandButton>
 
                                 <p:commandButton icon="ui-icon-trash" actionListener="#{cursoMBean.delete}">
-                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                    <f:setPropertyActionListener target="#{cursoMBean.curso}" value="#{item}"/>
                                 </p:commandButton>
 
 

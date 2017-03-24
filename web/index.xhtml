@@ -10,7 +10,7 @@
     <body>
 
         <ui:composition template="./WEB-INF/template_base/template_base.xhtml">
-
+            <ui:param name="root" value="#{request.contextPath}" />
             <ui:define name="top">
                 <h:form>
                     <p:dock position="bottom">
@@ -28,11 +28,17 @@
 
                     <p:panelMenu style="width:300px">
                         <p:submenu label="Matriculas">
+                             <p:menuitem value="Gerir Turmas" url="/paginas/turmas/gerir_turmas.jsf" ajax="false" icon="ui-icon-search"/>
                             <p:menuitem value="Nova Matricula" actionListener="#" icon="ui-icon-disk" />
                             <p:menuitem value="Listas" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />
                         </p:submenu>
                         <p:submenu label="Cursos">
-                            <p:menuitem value="Gerir Cursos" url="/paginas/cursos/cursos_listar.jsf" ajax="false" icon="ui-icon-search"/>
+                            <p:menuitem value="Gerir Cursos" url="/paginas/cursos/gerir_cursos.jsf" ajax="false" icon="ui-icon-search"/>
+                            
+                              <p:menuitem value="Gerir Categorias" url="/paginas/cursos/gerir_categoria_curso.jsf" ajax="false" icon="ui-icon-search"/>
+                            
+                            
+                            
                             
                             <p:menuitem value="Listas" actionListener="#"  ajax="false" icon="ui-icon-close"/>
                         </p:submenu>

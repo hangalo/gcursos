@@ -18,7 +18,7 @@ import java.util.List;
  * @author informatica
  */
 public class InstrutorDAO implements GenericoDAO<Instrutor>{
-    private static final String INSERIR = "";
+    private static final String INSERIR = "INSERT INTO instrutor (primeiro_nome_instrutor, segundo_nome_instrutor, sobrenome_instrutor, data_nascimento_instrutor, sexo_instrutor, telefone_princiapl, telefone_alternativo, email_instrutor, facebook_instrutor) VALUES(?, ?,?, ?, ?, ?, ?,?, ?);";
     private static final String ACTUALIZAR = "";
     private static final String ELIMINAR = "";
     private static final String BUSCAR_POR_CODIGO = "";

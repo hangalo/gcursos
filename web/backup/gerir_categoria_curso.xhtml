@@ -10,6 +10,8 @@
 
         <ui:composition template="./../../WEB-INF/template_base/template_base.xhtml">
 
+            
+            
             <ui:define name="top">
                 top
             </ui:define>
@@ -29,15 +31,10 @@
                     </h:form>
                 </h:panelGrid>
 
-                <h:form>
-                     <p:growl id="sucesso-guardar" showDetail="true" sticky="true"/>
-                    
-                    <p:dialog header="Novo Curso" widgetVar="novocurso" modal="true" height="380" width="550">
-                        <p:panel header="Titulo">
 
-
-                           
-
+                <p:dialog header="Novo Curso" widgetVar="novocurso" modal="true" height="380" width="550">
+                    <p:panel header="Titulo">
+                        <h:form>
                             <h:panelGrid columns="2">
                                 <p:outputLabel value=""/>
                                 <p:inputText/>
@@ -46,11 +43,11 @@
                                 <p:outputLabel value=""/>
                                 <p:inputText/>
                             </h:panelGrid>
+                        </h:form>   
+                    </p:panel>
 
-                        </p:panel>
+                </p:dialog> 
 
-                    </p:dialog> 
-                </h:form>  
 
                 <f:view>
                     <h:form>
@@ -80,7 +77,7 @@
                                 <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
                                     <f:setPropertyActionListener target="#" value="#{item}"/>
                                 </p:commandButton>
-                                <p:commandButton icon="ui-icon-trash" actionListener="#">
+                                <p:commandButton icon="ui-icon-trash" action="#">
                                     <f:setPropertyActionListener target="#" value="#{item}"/>
                                 </p:commandButton>
 
@@ -98,13 +95,13 @@
                         <p:panel header="Titulo">
 
                             <h:panelGrid columns="2">
-                                <p:outputLabel value=""/>
+                                  <p:outputLabel value=""/>
                                 <p:inputText/>
-                                <p:outputLabel value=""/>
+                                 <p:outputLabel value=""/>
                                 <p:inputText/>
-                                <p:outputLabel value=""/>
+                                 <p:outputLabel value=""/>
                                 <p:inputText/>
-
+                                
                                 <p:inputTextarea id="observacoes" value="#" title="Note" rows="2" cols="40" counter="display" maxlength="100" counterTemplate="restam apenas {0} caracteres ." autoResize="false" />
                                 <h:panelGroup/>
                                 <h:outputText id="display" />
