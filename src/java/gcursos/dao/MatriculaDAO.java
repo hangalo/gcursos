@@ -11,78 +11,103 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author informatica
  */
-public class MatriculaDAO implements GenericoDAO<Matricula> {
+public class MatriculaDAO implements GenericoDAOLogico<Matricula> {
 
-    private static final String INSERIR = "";
-    private static final String ACTUALIZAR = "";
-    private static final String ELIMINAR = "";
-    private static final String BUSCAR_POR_CODIGO = "";
-    private static final String LISTAR_TUDO = " ";
+    private static final String INSERT = "";
+    private static final String UPDATE = "";
+    private static final String DELETE = "";
+    private static final String SELECT_BY_ID = "";
+    private static final String SELECT_ALL = " ";
 
-    @Override
-    public void save(Matricula t) {
+   @Override
+    public boolean save(Matricula matricula) {
         PreparedStatement ps = null;
         Connection conn = null;
-        if (t == null) {
-            System.err.println("O valor oassado não pode ser nulo!");
+        boolean flagControlo = false;
+        if (matricula == null) {
+            System.err.println("O valor oassado nÃ£o pode ser nulo!");
         }
         try {
             conn = Conexao.getConnection();
-            ps = conn.prepareStatement(INSERIR);
+            ps = conn.prepareStatement(INSERT);
+            
 
-            /* Codigo aqui*/
-            ps.executeUpdate();
+            int retorno = ps.executeUpdate();
+            if (retorno > 0) {
+                System.out.println("Dados inseridos com sucesso: " + ps.getUpdateCount());
+                flagControlo = true;
+            }
+
+            return flagControlo;
 
         } catch (SQLException e) {
             System.out.println("Erro ao inserir dados: " + e.getMessage());
+            return false;
         } finally {
             Conexao.closeConnection(conn, ps);
         }
     }
 
     @Override
-    public void update(Matricula t) {
+    public boolean update(Matricula matricula) {
         PreparedStatement ps = null;
         Connection conn = null;
-        if (t == null) {
-            System.err.println("O valor oassado não pode ser nulo!");
+        boolean flagControlo = false;
+        if (matricula == null) {
+            System.err.println("O valor oassado nÃ£o pode ser nulo!");
         }
         try {
             conn = Conexao.getConnection();
-            ps = conn.prepareStatement(ACTUALIZAR);
+            ps = conn.prepareStatement(UPDATE);
+           
+          
+            int retorno = ps.executeUpdate();
+            if (retorno > 0) {
+                System.out.println("Dados inseridos com sucesso: " + ps.getUpdateCount());
+                flagControlo = true;
+            }
 
-            /* Codigo aqui*/
-            ps.executeUpdate();
+            return flagControlo;
 
         } catch (SQLException e) {
             System.out.println("Erro ao inserir dados: " + e.getMessage());
+            return false;
         } finally {
             Conexao.closeConnection(conn, ps);
         }
     }
 
     @Override
-    public void delete(Matricula t) {
+    public boolean delete(Matricula matricula) {
         PreparedStatement ps = null;
         Connection conn = null;
-        if (t == null) {
-            System.err.println("O valor oassado não pode ser nulo!");
+        boolean flagControlo = false;
+        if (matricula == null) {
+            System.err.println("O valor oassado nÃ£o pode ser nulo!");
         }
         try {
             conn = Conexao.getConnection();
-            ps = conn.prepareStatement(ELIMINAR);
+            ps = conn.prepareStatement(DELETE);
+            ps.setInt(1, 0);
+          
+            int retorno = ps.executeUpdate();
+            if (retorno > 0) {
+                System.out.println("Dados inseridos com sucesso: " + ps.getUpdateCount());
+                flagControlo = true;
+            }
 
-            /* Codigo aqui*/
-            ps.executeUpdate();
+            return flagControlo;
 
         } catch (SQLException e) {
             System.out.println("Erro ao inserir dados: " + e.getMessage());
+            return false;
         } finally {
             Conexao.closeConnection(conn, ps);
         }
@@ -90,62 +115,59 @@ public class MatriculaDAO implements GenericoDAO<Matricula> {
 
     @Override
     public Matricula findById(Integer id) {
-
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
         Matricula matricula = new Matricula();
         try {
             conn = Conexao.getConnection();
-            ps = conn.prepareStatement(BUSCAR_POR_CODIGO);
-
+            ps = conn.prepareStatement(SELECT_BY_ID);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
             if (!rs.next()) {
-                System.err.println("Não foi encontrado nenhum registo com o id: ");
+                System.err.println("Não foi encontrado nenhum registo com o id: " + id);
+                return null;
             }
-            /*Codigo Aqui*/
-
-            popularComDados(null, null);
+            popularComDados(matricula, rs);
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn, ps, rs);
         }
-
         return matricula;
     }
 
     @Override
     public List<Matricula> findAll() {
-
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        List<Matricula> matriculas = new ArrayList<>();
         try {
             conn = Conexao.getConnection();
-            ps = conn.prepareStatement(LISTAR_TUDO);
-
-            ps.executeQuery();
+            ps = conn.prepareStatement(SELECT_ALL);
+            rs = ps.executeQuery();
             while (rs.next()) {
-
-                popularComDados(null, null);
-
+                Matricula matricula = new Matricula();
+                popularComDados(matricula, rs);
+                matriculas.add(matricula);
             }
+
         } catch (SQLException ex) {
             System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
         } finally {
-            Conexao.closeConnection(conn, ps, rs);
+            Conexao.closeConnection(conn);
         }
-
-        return null;
+        return matriculas;
     }
 
-    @Override
-    public void popularComDados(Matricula t, ResultSet rs) {
-        try {
-            
-            /*Codigo aqui -> Altarar Exception para S*/
+  
 
-        } catch (Exception ex) {
+    @Override
+    public void popularComDados(Matricula matricula, ResultSet rs) {
+        try {
+            matricula.setIdMatricula(rs.getInt(""));
+        } catch (SQLException ex) {
             System.err.println("Erro ao carregar dados: " + ex.getLocalizedMessage());
         }
     }
