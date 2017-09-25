@@ -8,7 +8,9 @@ package gcursos.mb;
 import gcursos.dao.FuncionarioDAO;
 import gcursos.modelo.Funcionario;
 import gcursos.modelo.Sexo;
-import java.sql.Array;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,25 +18,24 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author Rei Santo Hangalo
  */
 @Named(value = "funcionarioBean")
-@ViewScoped
-public class FuncionarioBean {
+@SessionScoped
+public class FuncionarioBean implements Serializable {
 
-    private static final long serialVersionUID=1L;
+     private static final long serialVersionUID=1L;
     private Funcionario funcionario;
     private List<Sexo> sexos;
     private FuncionarioDAO funcionarioDAO;
     private List<Funcionario> funcionarios;
     
+        
     public FuncionarioBean() {
-    }
+    } 
     public void inicializar(){
     funcionario= new Funcionario();
     sexos= Arrays.asList(Sexo.values());
@@ -104,4 +105,6 @@ public class FuncionarioBean {
      }
      return funcionarios;
  }
+
+      
 }
