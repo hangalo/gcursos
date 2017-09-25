@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
     <body>
 
@@ -30,20 +31,54 @@
                 </h:panelGrid>
 
                 <h:form>
-                     <p:growl id="sucesso-guardar" showDetail="true" sticky="true"/>
-                    
-                    <p:dialog header="Novo Curso" widgetVar="novocurso" modal="true" height="380" width="550">
-                        <p:panel header="Titulo">
-                         
+                    <p:growl id="sucesso-guardar" showDetail="true" sticky="true"/>
 
-                            <h:panelGrid columns="2">
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
+                    <p:dialog header="Novo Aluno" widgetVar="novocurso" modal="true" height="380" width="900">
+                        <p:panel header="Dados do aluno">
+                            <h:panelGrid columns="3">
+                                <h:panelGroup layout="span">
+
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Segundo Nome:"/>
+                                        <p:inputText size="40"/>
+                                    </h:panelGrid>                                    
+
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Segundo Nome:"/>
+                                        <p:inputText/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+
+
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Sobrenome"/>
+                                        <p:inputText size="40"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+                                
+                                
+                                 <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Data de Nascimento"/>
+                            <p:inputText/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+                                
                             </h:panelGrid>
+
+
+
+
+
+
+
+
+
+                          
+
 
                         </p:panel>
 

@@ -12,9 +12,11 @@ import java.util.Date;
  *
  * @author praveen
  */
-public class Aluno extends Pessoa implements Serializable{
-  private byte [] foto;
-  private String urlFoto;
+public class Aluno extends Pessoa implements Serializable {
+
+    private byte[] foto;
+    private String urlFoto;
+
     public Aluno() {
     }
 
@@ -40,8 +42,4 @@ public class Aluno extends Pessoa implements Serializable{
         this.urlFoto = urlFoto;
     }
 
-    
-   
-
-   
 }

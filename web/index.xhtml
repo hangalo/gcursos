@@ -16,9 +16,9 @@
                     <p:dock position="bottom">
                         <p:menuitem value="Alunos" icon="resources/imagens/estudantes.png" url="#"/>
                         <p:menuitem value="Matriculas" icon="resources/imagens/matricula.png" url="#"/>
-                       
+
                     </p:dock>
-                    
+
                 </h:form>
             </ui:define>
 
@@ -28,38 +28,26 @@
 
                     <p:panelMenu style="width:300px">
                         <p:submenu label="Matriculas">
-                             <p:menuitem value="Gerir Turmas" url="/paginas/turmas/gerir_turmas.jsf" ajax="false" icon="ui-icon-search"/>
+                            <p:menuitem value="Gerir Turmas" url="/paginas/turmas/gerir_turmas.jsf" ajax="false" icon="ui-icon-search"/>
                             <p:menuitem value="Nova Matricula" actionListener="#" icon="ui-icon-disk" />
                             <p:menuitem value="Listas" actionListener="#"  icon="ui-icon-arrowrefresh-1-w" />
                         </p:submenu>
                         <p:submenu label="Cursos">
                             <p:menuitem value="Gerir Cursos" url="/paginas/cursos/gerir_cursos.jsf" ajax="false" icon="ui-icon-search"/>
-                            
-                              <p:menuitem value="Gerir Categorias" url="/paginas/cursos/gerir_categoria_curso.jsf" ajax="false" icon="ui-icon-search"/>
-                            
-                            
-                            
-                            
+                            <p:menuitem value="Gerir Categorias" url="/paginas/cursos/gerir_categoria_curso.jsf" ajax="false" icon="ui-icon-search"/>
+
+
+
+
                             <p:menuitem value="Listas" actionListener="#"  ajax="false" icon="ui-icon-close"/>
                         </p:submenu>
                         <p:separator />
-                        <p:submenu label="Alunos" >
-                            <p:menuitem value="Novo Aluno" outcome="/index" icon="ui-icon-signal" />
-
-                            <p:submenu label="Listas" icon="ui-icon-heart">
-                                <p:menuitem value="Por nomes" url="#" icon="ui-icon-home" />
-                                <p:menuitem value="Curso" url="#" icon="ui-icon-document" />
-                                <p:menuitem value="Turmas" url="#" icon="ui-icon-arrowthick-1-s" />
-
-                            </p:submenu>
-
-
-                        </p:submenu>
+                      
 
 
                         <p:separator />
-                        <p:submenu label="Pagamentos" >
-                            <p:menuitem value="Novo Pagamento" outcome="/index" icon="ui-icon-signal" />
+                        <p:submenu label="Alunos" >
+                            <p:menuitem value="Gerir Alunos" url="/paginas/alunos/gerir_alunos.jsf" ajax="false" icon="ui-icon-search"/>
 
                             <p:submenu label="Listas" icon="ui-icon-heart">
                                 <p:menuitem value="Por nomes" url="#" icon="ui-icon-home" />
