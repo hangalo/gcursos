@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputScript library="js" name="primefaces-calendar-pt.js"/>
     </h:head>
     <h:body>
         <ui:composition template="./../../WEB-INF/template_base/template_base.xhtml">
@@ -88,9 +89,9 @@
                                 <h:panelGroup>
                                     <h:panelGrid columns="1">
                                         <h:outputLabel value="Data de Nascimento"/>
-                                        <p:inputText value="#{funcionarioBean.funcionario.dataNascimento}">
+                                        <p:calendar value="#{funcionarioBean.funcionario.dataNascimento}" pattern="dd/MM/yyyy" locale="pt">
                                            
-                                        </p:inputText>
+                                        </p:calendar>
                                     </h:panelGrid>
                                 </h:panelGroup>
 
