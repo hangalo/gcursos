@@ -107,13 +107,13 @@
 
                 <f:view>
                     <h:form>
-                        <h:dataTable value="#{funcionarioBean.funcionarios}" var="item">
+                        <h:dataTable value="#" var="item">
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Coluna 1"/>
 
                                 </f:facet>
-                                <h:outputText value="#{item.primeiroNome}"/>
+                                <h:outputText value="#{item}"/>
                             </p:column>
 
                             <p:column>
@@ -130,18 +130,13 @@
                                 <h:outputText value="#{item.sobrenome}"/>
                             </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Coluna 4"/>
-                                </f:facet>
-                                <h:outputText value="#{item.dataNascimento}"/>
-                            </p:column>
+                            
 
                             <p:column headerText="Acções" style="width: 116px">
                                 <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
                                     <f:setPropertyActionListener target="#" value="#{item}"/>
                                 </p:commandButton>
-                                <p:commandButton icon="ui-icon-trash" actionListener="#{funcionarioBean.delete(event)}">
+                                <p:commandButton icon="ui-icon-trash" actionListener="#">
                                     <f:setPropertyActionListener target="#" value="#{item}"/>
                                 </p:commandButton>
                             </p:column>
@@ -173,7 +168,7 @@
                         </p:panel>
 
 
-                        <p:commandButton actionListener="#{funcionarioBean.sava(event)}" value="Guardar"  update="growl" ajax="false"/>
+                        <p:commandButton actionListener="#" value="Guardar"  update="growl" ajax="false"/>
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
 
                     </p:dialog>
