@@ -35,16 +35,10 @@
                         <p:submenu label="Cursos">
                             <p:menuitem value="Gerir Cursos" url="/paginas/cursos/gerir_cursos.jsf" ajax="false" icon="ui-icon-search"/>
                             <p:menuitem value="Gerir Categorias" url="/paginas/cursos/gerir_categoria_curso.jsf" ajax="false" icon="ui-icon-search"/>
-
-
-
-
                             <p:menuitem value="Listas" actionListener="#"  ajax="false" icon="ui-icon-close"/>
                         </p:submenu>
+                        
                         <p:separator />
-                      
-
-
                         <p:separator />
                         <p:submenu label="Alunos" >
                             <p:menuitem value="Gerir Alunos" url="/paginas/alunos/gerir_alunos.jsf" ajax="false" icon="ui-icon-search"/>
@@ -58,6 +52,17 @@
 
 
                         </p:submenu>
+                        
+                    
+                        <p:separator/>
+                        <p:separator/>
+                        <p:submenu label="Funcionario">
+                            <p:menuitem value="Gerir Funcionarios" url="/paginas/funcionario/gerir_funcionario.jsf" ajax="false" icon="ui-icon-search"/>
+                            <p:submenu label="Listas" icon="ui-icon-heart">
+                            <p:menuitem value="por nome" url="#" icon="ui-icon-home"/>
+                         </p:submenu>
+                        </p:submenu>
+                        
                     </p:panelMenu>
                 </h:form>
 

@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../../WEB-INF/template_base/template_base.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <h:panelGrid columns="2">
+                    <h:form>
+                        <h:inputText size="50"/>
+                        <p:commandButton type="button" value="Pesquisar" action="#"/>
+                    </h:form>
+                    <h:form>
+                        <p:commandButton value="Novo Funcionario" type="button" onclick="PF('novofuncionario').show();" />
+                    </h:form>
+                </h:panelGrid>
+
+                <h:form>
+                    <p:growl id="sucesso-guardar" showDetail="true" sticky="true"/>
+
+                    <p:dialog header="Novo Funcionario" widgetVar="novofuncionario" modal="true" height="380" width="900">
+                        <p:panel header="Dados do Funcionario">
+                            <h:panelGrid columns="3">
+                                <h:panelGroup layout="span">
+
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Primeiro Nome:"/>
+                                        <p:inputText size="40"/>
+                                    </h:panelGrid>                                    
+
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Segundo Nome:"/>
+                                        <p:inputText/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+
+
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Sobrenome:"/>
+                                        <p:inputText size="40"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+
+
+                                <h:panelGrid columns="1">
+                                    <p:outputLabel value="Telefone Fixo"/>
+                                    <p:inputText></p:inputText>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Telefone Unitel"/>
+                                    <p:inputText></p:inputText>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Telefone unitel"/>
+                                    <p:inputText> </p:inputText>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Telefone Movicel"/>
+                                    <p:inputText></p:inputText>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Email"/>
+                                    <p:inputText> </p:inputText>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Foto"/>
+                                    <p:inputText></p:inputText>
+                                </h:panelGrid>
+
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <h:outputLabel value="Data de Nascimento"/>
+                                        <p:inputText value="#{funcionarioBean.funcionario.dataNascimento}">
+
+                                        </p:inputText>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+
+
+                            </h:panelGrid>
+                            <h:outputLabel value="Sexo:"/>
+                            <h:selectOneRadio value="#{funcionarioBean.funcionario.sexo}">
+                                <f:selectItems value="#{funcionarioBean.opSexos}"/> 
+                            </h:selectOneRadio>              
+                        </p:panel>
+
+                    </p:dialog> 
+                </h:form>  
+
+                <f:view>
+                    <h:form>
+                        <h:dataTable value="#{funcionarioBean.funcionarios}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coluna 1"/>
+
+                                </f:facet>
+                                <h:outputText value="#{item.primeiroNome}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coluna 2"/>
+                                </f:facet>
+                                <h:outputText value="#{item.segundoNome}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coluna 3"/>
+                                </f:facet>
+                                <h:outputText value="#{item.sobrenome}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Coluna 4"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dataNascimento}"/>
+                            </p:column>
+
+                            <p:column headerText="Acções" style="width: 116px">
+                                <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
+                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                </p:commandButton>
+                                <p:commandButton icon="ui-icon-trash" actionListener="#{funcionarioBean.delete(event)}">
+                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+                <h:form id="formEditar" >
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:dialog header="Editar" id="editar" widgetVar="dialogoEditar" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="380" width="550">
+
+
+                        <p:panel header="Titulo">
+
+                            <h:panelGrid columns="2">
+                                <p:outputLabel value=""/>
+                                <p:inputText/>
+                                <p:outputLabel value=""/>
+                                <p:inputText/>
+                                <p:outputLabel value=""/>
+                                <p:inputText/>
+
+                                <p:inputTextarea id="observacoes" value="#" title="Note" rows="2" cols="40" counter="display" maxlength="100" counterTemplate="restam apenas {0} caracteres ." autoResize="false" />
+                                <h:panelGroup/>
+                                <h:outputText id="display" />
+
+                            </h:panelGrid>
+
+                        </p:panel>
+
+
+                        <p:commandButton actionListener="#{funcionarioBean.sava(event)}" value="Guardar"  update="growl" ajax="false"/>
+                        <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
+
+                    </p:dialog>
+                </h:form> 
+
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
