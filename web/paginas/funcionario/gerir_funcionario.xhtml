@@ -89,7 +89,7 @@
                                     <h:panelGrid columns="1">
                                         <h:outputLabel value="Data de Nascimento"/>
                                         <p:inputText value="#{funcionarioBean.funcionario.dataNascimento}">
-
+                                           
                                         </p:inputText>
                                     </h:panelGrid>
                                 </h:panelGroup>
@@ -101,6 +101,11 @@
                                 <f:selectItems value="#{funcionarioBean.opSexos}"/> 
                             </h:selectOneRadio>              
                         </p:panel>
+                        
+                        <p:commandButton actionListener="#{funcionarioBean.savSa}" value="Guardar"  update="growl" ajax="false"/>
+                        <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
+                        
+                        
 
                     </p:dialog> 
                 </h:form>  
