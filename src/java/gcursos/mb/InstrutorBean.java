@@ -5,8 +5,9 @@
  */
 package gcursos.mb;
 
-import gcursos.dao.FuncionarioDAO;
-import gcursos.modelo.Funcionario;
+import gcursos.dao.InstrutorDAO;
+
+import gcursos.modelo.Instrutor;
 import gcursos.modelo.Sexo;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -23,25 +24,22 @@ import javax.faces.model.SelectItem;
  *
  * @author Rei Santo Hangalo
  */
-@Named(value = "funcionarioBean")
+@Named(value = "instrutorBean")
 @SessionScoped
-public class FuncionarioBean implements Serializable {
-
+public class InstrutorBean implements Serializable {
     private static final long serialVersionUID=1L;
-    private Funcionario funcionario;
+    private Instrutor instrutor;
     private List<Sexo> sexos;
-    private FuncionarioDAO funcionarioDAO;
-    private List<Funcionario> funcionarios;
+    private InstrutorDAO instrutorDAO;
+    private List<Instrutor> instrutors;
     
-        
-    public FuncionarioBean() {
-    } 
-    public void inicializar(){
-    funcionario= new Funcionario();
-    sexos= Arrays.asList(Sexo.values());
-    funcionarioDAO= new FuncionarioDAO();
+    public InstrutorBean() {
     }
-    
+    public void inicializar(){
+    instrutor = new Instrutor();
+    sexos= Arrays.asList(Sexo.values());
+    instrutorDAO= new InstrutorDAO();    
+    }
     public List<SelectItem> getOpSexos(){
     List<SelectItem> list= new ArrayList<>();
     for(Sexo sexo: Sexo.values()){
@@ -50,12 +48,12 @@ public class FuncionarioBean implements Serializable {
     return list;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
+    public Instrutor getInstrutor() {
+        return instrutor;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
+    public void setInstrutor(Instrutor instrutor) {
+        this.instrutor = instrutor;
     }
 
     public List<Sexo> getSexos() {
@@ -66,46 +64,43 @@ public class FuncionarioBean implements Serializable {
         this.sexos = sexos;
     }
 
-    public FuncionarioDAO getFuncionarioDAO() {
-        return funcionarioDAO;
+    public InstrutorDAO getInstrutorDAO() {
+        return instrutorDAO;
     }
 
-    public void setFuncionarioDAO(FuncionarioDAO funcionarioDAO) {
-        this.funcionarioDAO = funcionarioDAO;
+    public void setInstrutorDAO(InstrutorDAO instrutorDAO) {
+        this.instrutorDAO = instrutorDAO;
     }
 
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
+    public List<Instrutor> getInstrutors() {
+        return instrutors;
     }
 
-    public void setFuncionarios(List<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
+    public void setInstrutors(List<Instrutor> instrutors) {
+        this.instrutors = instrutors;
     }
-    
-    public void sava(ActionEvent event){
-        funcionarioDAO.save(funcionario);
-        funcionario= new Funcionario();
-        funcionario=null;
+     public void sava(ActionEvent event){
+        instrutorDAO.save(instrutor);
+        instrutor= new Instrutor();
+        instrutor=null;
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Guardar","Cadastrados com Sucesso"));
      
     }
     public void edit(ActionEvent event){
-    funcionarioDAO.update(funcionario);
-    funcionarios=null;
+    instrutorDAO.update(instrutor);
+    instrutors=null;
     FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Atualizar","Dados Actualizados com Sucesso"));
     }
     public void delete(ActionEvent event){
-        funcionarioDAO.delete(funcionario);
-        funcionario= new Funcionario();
+        instrutorDAO.delete(instrutor);
+        instrutor= new Instrutor();
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Eliminar","Dados Elimidados com Sucesso"));
      }
- public List<Funcionario> getListaFuncionarios(){
-     if (funcionarios== null) {
-         funcionarios= funcionarioDAO.findAll();
+ public List<Instrutor> getListaInstrutors(){
+     if (instrutors== null) {
+         instrutors= instrutorDAO.findAll();
          
      }
-     return funcionarios;
+     return instrutors;
  }
-
-      
 }
