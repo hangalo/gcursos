@@ -75,7 +75,7 @@ public class AlunoDAOTest {
         
         assertTrue(alunos != null);
         
-        alunos.forEach(System.out::println);
+//        alunos.forEach(System.out::println);
     }
     
     @Test

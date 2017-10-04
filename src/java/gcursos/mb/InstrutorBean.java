@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -35,6 +36,8 @@ public class InstrutorBean implements Serializable {
     
     public InstrutorBean() {
     }
+    
+     @PostConstruct
     public void inicializar(){
     instrutor = new Instrutor();
     sexos= Arrays.asList(Sexo.values());

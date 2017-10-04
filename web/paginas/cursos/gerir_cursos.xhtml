@@ -105,16 +105,16 @@
                                 </f:facet>
                                 <h:outputText value="#{item.precoCurso}"/>
                             </p:column>
-                            
-                             <p:column>
+
+                            <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Carga horária"/>
                                 </f:facet>
-                                 <h:outputText value="#{item.cargaHorariaCurso}"/>
+                                <h:outputText value="#{item.cargaHorariaCurso}"/>
                             </p:column>
 
                             <p:column style="width: 116px">
-                                 <f:facet name="header">
+                                <f:facet name="header">
                                     <h:outputText value="Acções"/>
                                 </f:facet>
                                 <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
@@ -222,13 +222,15 @@
                                 </h:panelGroup>
                             </h:panelGrid>
                             <h:outputText/>
-                            <h:panelGrid columns="2">
-                                <p:outputLabel value="Preço"/>
-                                <p:outputLabel value="#{cursoMBean.curso.precoCurso}"/>
-                            </h:panelGrid>                         
+                                                
 
 
-                        </p:panel>                        
+
+                        </p:panel>  
+
+
+
+
 
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
 

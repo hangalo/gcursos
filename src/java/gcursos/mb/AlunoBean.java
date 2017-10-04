@@ -47,7 +47,7 @@ public class AlunoBean implements Serializable {
     public void delete() {
         try {
             alunoDAO.delete(aluno);
-            MessageUtil.addSucessMessage(FacesContext.getCurrentInstance(), "Aluno com ID " + aluno.getId() + " e Nome " + aluno.getNomeCompeto() + " foi excluído com sucesso!!!");
+            MessageUtil.addSucessMessage(FacesContext.getCurrentInstance(), "Aluno com ID " + aluno.getId() + " e Nome " + aluno.getPrimeiroNome() + " foi excluído com sucesso!!!");
             createAluno();
         } catch (Exception ex) {
             MessageUtil.addErrorMessage(FacesContext.getCurrentInstance(), "Ocorreu um erro. Não foi possível excluir o aluno com o id " + aluno.getId());

@@ -14,8 +14,9 @@ import javax.xml.crypto.Data;
  *
  * @author praveen
  */
-public class Funcionario extends Pessoa implements Serializable{
+public class Funcionario  implements Serializable{
 
+    
     private static final long serialVersionUID = 1L;
     private int id;
     private String primeiroNome;
@@ -23,30 +24,25 @@ public class Funcionario extends Pessoa implements Serializable{
     private String sobrenome;
     private Date dataNascimento;
     private Sexo sexo;
-    private String telefoneFixo;
-    private String telefoneUnitel;
-    private String teleFoneMovicel; 
+    private String telefonePrincipal;
+    private String telefoneAlternativo;
     private String email;
     private String facebook;
-    private String urlFoto;
-    
+       
     public Funcionario() {
     }
-    
-    public Funcionario(int id, String primeiroNome, String segundoNome, String sobrenome, Date dataNascimento, Sexo sexo, String telefoneFixo, String telefoneMovicel, String telefoneUnitel, String email, String facebook, String urlFoto) {
-        super(id, primeiroNome, segundoNome, sobrenome, dataNascimento, sexo, telefoneFixo, telefoneMovicel, telefoneUnitel, email, facebook);
-    this.id=id;
-    this.primeiroNome=primeiroNome;
-    this.segundoNome=segundoNome;
-    this.sobrenome=sobrenome;
-    this.dataNascimento=dataNascimento;
-    this.sexo=sexo;
-    this.telefoneFixo=telefoneFixo;
-    this.telefoneUnitel=telefoneUnitel;
-    this.teleFoneMovicel=telefoneMovicel;
-    this.email=email; 
-    this.facebook=facebook;
-    this.urlFoto=urlFoto;
+
+    public Funcionario(int id, String primeiroNome, String segundoNome, String sobrenome, Date dataNascimento, Sexo sexo, String telefonePrincipal, String telefoneAlternativo, String email, String facebook) {
+        this.id = id;
+        this.primeiroNome = primeiroNome;
+        this.segundoNome = segundoNome;
+        this.sobrenome = sobrenome;
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+        this.telefonePrincipal = telefonePrincipal;
+        this.telefoneAlternativo = telefoneAlternativo;
+        this.email = email;
+        this.facebook = facebook;
     }
 
     public int getId() {
@@ -97,28 +93,20 @@ public class Funcionario extends Pessoa implements Serializable{
         this.sexo = sexo;
     }
 
-    public String getTelefoneFixo() {
-        return telefoneFixo;
+    public String getTelefonePrincipal() {
+        return telefonePrincipal;
     }
 
-    public void setTelefoneFixo(String telefoneFixo) {
-        this.telefoneFixo = telefoneFixo;
+    public void setTelefonePrincipal(String telefonePrincipal) {
+        this.telefonePrincipal = telefonePrincipal;
     }
 
-    public String getTelefoneUnitel() {
-        return telefoneUnitel;
+    public String getTelefoneAlternativo() {
+        return telefoneAlternativo;
     }
 
-    public void setTelefoneUnitel(String telefoneUnitel) {
-        this.telefoneUnitel = telefoneUnitel;
-    }
-
-    public String getTeleFoneMovicel() {
-        return teleFoneMovicel;
-    }
-
-    public void setTeleFoneMovicel(String teleFoneMovicel) {
-        this.teleFoneMovicel = teleFoneMovicel;
+    public void setTelefoneAlternativo(String telefoneAlternativo) {
+        this.telefoneAlternativo = telefoneAlternativo;
     }
 
     public String getEmail() {
@@ -137,13 +125,9 @@ public class Funcionario extends Pessoa implements Serializable{
         this.facebook = facebook;
     }
 
-    public String getUrlFoto() {
-        return urlFoto;
-    }
+   
+   
 
-    public void setUrlFoto(String urlFoto) {
-        this.urlFoto = urlFoto;
-    }
     
     
 }

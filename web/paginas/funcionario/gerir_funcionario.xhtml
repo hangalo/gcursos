@@ -41,14 +41,14 @@
 
                                     <h:panelGrid columns="1">
                                         <p:outputLabel value="Primeiro Nome:"/>
-                                        <p:inputText size="40"/>
+                                        <p:inputText value="#{funcionarioBean.funcionario.primeiroNome}" size="40"/>
                                     </h:panelGrid>                                    
 
                                 </h:panelGroup>
                                 <h:panelGroup>
                                     <h:panelGrid columns="1">
                                         <p:outputLabel value="Segundo Nome:"/>
-                                        <p:inputText/>
+                                        <p:inputText value="#{funcionarioBean.funcionario.segundoNome}"/>
                                     </h:panelGrid>
                                 </h:panelGroup>
 
@@ -56,34 +56,28 @@
                                 <h:panelGroup>
                                     <h:panelGrid columns="1">
                                         <p:outputLabel value="Sobrenome:"/>
-                                        <p:inputText size="40"/>
+                                        <p:inputText value="#{funcionarioBean.funcionario.sobrenome}" size="40"/>
                                     </h:panelGrid>
                                 </h:panelGroup>
 
 
                                 <h:panelGrid columns="1">
-                                    <p:outputLabel value="Telefone Fixo"/>
-                                    <p:inputText></p:inputText>
+                                    <p:outputLabel value="Telefone Principal"/>
+                                    <p:inputText value="#{funcionarioBean.funcionario.telefonePrincipal}"/>
                                 </h:panelGrid>
                                 <h:panelGrid columns="1">
-                                    <h:outputLabel value="Telefone Unitel"/>
-                                    <p:inputText></p:inputText>
+                                    <h:outputLabel value="Telefone Alternativo"/>
+                                    <p:inputText value="#{funcionarioBean.funcionario.telefoneAlternativo}"/>
                                 </h:panelGrid>
-                                <h:panelGrid columns="1">
-                                    <h:outputLabel value="Telefone unitel"/>
-                                    <p:inputText> </p:inputText>
-                                </h:panelGrid>
-                                <h:panelGrid columns="1">
-                                    <h:outputLabel value="Telefone Movicel"/>
-                                    <p:inputText></p:inputText>
-                                </h:panelGrid>
+                               
+                             
                                 <h:panelGrid columns="1">
                                     <h:outputLabel value="Email"/>
-                                    <p:inputText> </p:inputText>
+                                    <p:inputText value="#{funcionarioBean.funcionario.email}"/>
                                 </h:panelGrid>
                                 <h:panelGrid columns="1">
-                                    <h:outputLabel value="Foto"/>
-                                    <p:inputText></p:inputText>
+                                    <h:outputLabel value="Facebook:"/>
+                                    <p:inputText value="#{funcionarioBean.funcionario.facebook}"/>
                                 </h:panelGrid>
 
                                 <h:panelGroup>
@@ -103,7 +97,7 @@
                             </h:selectOneRadio>              
                         </p:panel>
                         
-                        <p:commandButton actionListener="#{funcionarioBean.savSa}" value="Guardar"  update="growl" ajax="false"/>
+                        <p:commandButton actionListener="#{funcionarioBean.sava(event)}" value="Guardar"  update="growl" ajax="false"/>
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
                         
                         
@@ -112,69 +106,118 @@
                 </h:form>  
 
                 <f:view>
+                    <p:panel header="Lista dos Funcionarios">
                     <h:form>
-                        <h:dataTable value="#" var="item">
+                        <h:dataTable value="#{funcionarioBean.funcionarios}" var="item">
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Coluna 1"/>
+                                    <h:outputText value="Primeiro nome"/>
 
                                 </f:facet>
-                                <h:outputText value="#{item}"/>
+                                <h:outputText value="#{item.primeiroNome}"/>
                             </p:column>
 
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Coluna 2"/>
+                                    <h:outputText value="Segundo nome:"/>
                                 </f:facet>
-                                <h:outputText value="#"/>
+                                <h:outputText value="#{item.segundoNome}"/>
                             </p:column>
 
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Coluna 3"/>
+                                    <h:outputText value="Sexo"/>
                                 </f:facet>
-                                <h:outputText value="#"/>
+                                <h:outputText value="#{item.sexo}"/>
                             </p:column>
 
                             
 
                             <p:column headerText="Acções" style="width: 116px">
-                                <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
-                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                              
+                                
+                                <p:commandButton icon="ui-icon-trash" actionListener="#{funcionarioBean.delete(event)}">
+                                    <f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{item}"/>
                                 </p:commandButton>
-                                <p:commandButton icon="ui-icon-trash" actionListener="#">
-                                    <f:setPropertyActionListener target="#" value="#{item}"/>
+                                
+                                  <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
+                                      <f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{item}"/>
                                 </p:commandButton>
+                                
                             </p:column>
                         </h:dataTable>
                     </h:form>
+                        </p:panel>
                 </f:view>
 
                 <h:form id="formEditar" >
                     <p:growl id="growl" showDetail="true" sticky="true"/>
-                    <p:dialog header="Editar" id="editar" widgetVar="dialogoEditar" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="380" width="550">
+                    <p:dialog header="Editar" id="editar" widgetVar="dialogoEditar" modal="true" showEffect="fade" hideEffect="fade" resizable="false" height="380" width="700">
+                        <h:inputHidden value="#{funcionarioBean.funcionario.id}"/>
+
+                        <p:panel header="Dados do Funcionario">
+                            <h:panelGrid columns="3">
+                                <h:panelGroup layout="span">
+
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Primeiro Nome:"/>
+                                        <p:inputText value="#{funcionarioBean.funcionario.primeiroNome}" size="40"/>
+                                    </h:panelGrid>                                    
+
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Segundo Nome:"/>
+                                        <p:inputText value="#{funcionarioBean.funcionario.segundoNome}"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
 
 
-                        <p:panel header="Titulo">
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <p:outputLabel value="Sobrenome:"/>
+                                        <p:inputText value="#{funcionarioBean.funcionario.sobrenome}"/>
+                                    </h:panelGrid>
+                                </h:panelGroup>
 
-                            <h:panelGrid columns="2">
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
-                                <p:outputLabel value=""/>
-                                <p:inputText/>
 
-                                <p:inputTextarea id="observacoes" value="#" title="Note" rows="2" cols="40" counter="display" maxlength="100" counterTemplate="restam apenas {0} caracteres ." autoResize="false" />
-                                <h:panelGroup/>
-                                <h:outputText id="display" />
+                                <h:panelGrid columns="1">
+                                    <p:outputLabel value="Telefone Principal"/>
+                                    <p:inputText value="#{funcionarioBean.funcionario.telefonePrincipal}"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Telefone Alternativo"/>
+                                    <p:inputText value="#{funcionarioBean.funcionario.telefoneAlternativo}"/>
+                                </h:panelGrid>
+                               
+                             
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Email"/>
+                                    <p:inputText value="#{funcionarioBean.funcionario.email}"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="Facebook:"/>
+                                    <p:inputText value="#{funcionarioBean.funcionario.facebook}"/>
+                                </h:panelGrid>
+
+                                <h:panelGroup>
+                                    <h:panelGrid columns="1">
+                                        <h:outputLabel value="Data de Nascimento"/>
+                                        <p:calendar value="#{funcionarioBean.funcionario.dataNascimento}" pattern="dd/MM/yyyy" locale="pt">
+                                           
+                                        </p:calendar>
+                                    </h:panelGrid>
+                                </h:panelGroup>
+
 
                             </h:panelGrid>
-
+                            <h:outputLabel value="Sexo:"/>
+                            <h:selectOneRadio value="#{funcionarioBean.funcionario.sexo}">
+                                <f:selectItems value="#{funcionarioBean.opSexos}"/> 
+                            </h:selectOneRadio>              
                         </p:panel>
-
-
-                        <p:commandButton actionListener="#" value="Guardar"  update="growl" ajax="false"/>
+                        
+                        <p:commandButton actionListener="#{funcionarioBean.edit(event)}" value="Guardar"  update="growl" ajax="false"/>
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
 
                     </p:dialog>
