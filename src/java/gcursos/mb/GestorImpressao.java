@@ -113,6 +113,9 @@ public class GestorImpressao {
 
     private void prepararRelatorio(String relatorio, HashMap hashMap) {
         conn = Conexao.getConnection();
+        
+        System.out.println(">>>>>>> Relatio>>>>>"+getPathPastaAplicacaoJSF() + relatorio);
+        
         try {
             facesContext = FacesContext.getCurrentInstance();
             facesContext.responseComplete();

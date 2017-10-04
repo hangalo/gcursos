@@ -24,7 +24,7 @@ public class Relatorio {
     }
     
     public String imprimir(){
-     String relatorio="cursos.jasper";
+     String relatorio="funcionarios.jasper";
      
      HashMap paramentros = new HashMap();
      gestorImpressao.imprimirPDF(relatorio, paramentros);
