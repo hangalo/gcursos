@@ -15,34 +15,39 @@ import java.util.Date;
 public class Instrutor extends Pessoa implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private int idInstudor;
+    private int idInstrutor;
     private String primeiroNomeInstrutor;
     private String segundoNomeInstrutor;
     private String sobrenomeInstrutor;
     private Date dataNascimentoInstrutor;
-    private Sexo Sexo;
-    private String telefonePrincipal; 
-    private String telefoneAlternativo;
-    
-    private String email;
+    private Sexo sexo;
+    private String telefonePrincipalInstrutor;
+    private String telefoneAlternativoInstrutor;
+    private String emailInstrutor;
     private String facebookInstrutor;
-    private String urlfotoInstrutor;
-    private byte[] fotoInstrutor;
-    
 
     public Instrutor() {
     }
 
-    public Instrutor(int idIstrutor, String primeiroNome, String segundoNome, String sobrenome, Date dataNascimento, Sexo sexo, String telefoneFixo, String telefoneMovicel, String telefoneUnitel, String email, String facebook, String foto) {
-        super(idIstrutor, primeiroNome, segundoNome, sobrenome, dataNascimento, sexo, telefoneFixo, telefoneMovicel, telefoneUnitel, email, facebook);
+    public Instrutor(int idInstrutor, String primeiroNomeInstrutor, String segundoNomeInstrutor, String sobrenomeInstrutor, Date dataNascimentoInstrutor, Sexo sexo, String telefonePrincipalInstrutor, String telefoneAlternativoInstrutor, String emailInstrutor, String facebookInstrutor) {
+        this.idInstrutor = idInstrutor;
+        this.primeiroNomeInstrutor = primeiroNomeInstrutor;
+        this.segundoNomeInstrutor = segundoNomeInstrutor;
+        this.sobrenomeInstrutor = sobrenomeInstrutor;
+        this.dataNascimentoInstrutor = dataNascimentoInstrutor;
+        this.sexo = sexo;
+        this.telefonePrincipalInstrutor = telefonePrincipalInstrutor;
+        this.telefoneAlternativoInstrutor = telefoneAlternativoInstrutor;
+        this.emailInstrutor = emailInstrutor;
+        this.facebookInstrutor = facebookInstrutor;
     }
 
-    public int getIdInstudor() {
-        return idInstudor;
+    public int getIdInstrutor() {
+        return idInstrutor;
     }
 
-    public void setIdInstudor(int idInstudor) {
-        this.idInstudor = idInstudor;
+    public void setIdInstrutor(int idInstrutor) {
+        this.idInstrutor = idInstrutor;
     }
 
     public String getPrimeiroNomeInstrutor() {
@@ -78,35 +83,35 @@ public class Instrutor extends Pessoa implements Serializable{
     }
 
     public Sexo getSexo() {
-        return Sexo;
+        return sexo;
     }
 
-    public void setSexo(Sexo Sexo) {
-        this.Sexo = Sexo;
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
     }
 
-    public String getTelefonePrincipal() {
-        return telefonePrincipal;
+    public String getTelefonePrincipalInstrutor() {
+        return telefonePrincipalInstrutor;
     }
 
-    public void setTelefonePrincipal(String telefonePrincipal) {
-        this.telefonePrincipal = telefonePrincipal;
+    public void setTelefonePrincipalInstrutor(String telefonePrincipalInstrutor) {
+        this.telefonePrincipalInstrutor = telefonePrincipalInstrutor;
     }
 
-    public String getTelefoneAlternatico() {
-        return telefoneAlternativo;
+    public String getTelefoneAlternativoInstrutor() {
+        return telefoneAlternativoInstrutor;
     }
 
-    public void setTelefoneAlternatico(String telefoneAlternatico) {
-        this.telefoneAlternativo = telefoneAlternatico;
+    public void setTelefoneAlternativoInstrutor(String telefoneAlternativoInstrutor) {
+        this.telefoneAlternativoInstrutor = telefoneAlternativoInstrutor;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailInstrutor() {
+        return emailInstrutor;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailInstrutor(String emailInstrutor) {
+        this.emailInstrutor = emailInstrutor;
     }
 
     public String getFacebookInstrutor() {
@@ -116,21 +121,10 @@ public class Instrutor extends Pessoa implements Serializable{
     public void setFacebookInstrutor(String facebookInstrutor) {
         this.facebookInstrutor = facebookInstrutor;
     }
-
-    public String getUrlfotoInstrutor() {
-        return urlfotoInstrutor;
-    }
-
-    public void setUrlfotoInstrutor(String urlfotoInstrutor) {
-        this.urlfotoInstrutor = urlfotoInstrutor;
-    }
-
-    public byte[] getFotoInstrutor() {
-        return fotoInstrutor;
-    }
-
-    public void setFotoInstrutor(byte[] fotoInstrutor) {
-        this.fotoInstrutor = fotoInstrutor;
-    }
+    
+    
+  
+        
+    
     
 }

@@ -30,7 +30,7 @@ import javax.faces.model.SelectItem;
 public class InstrutorBean implements Serializable {
     private static final long serialVersionUID=1L;
     private Instrutor instrutor;
-    private List<Sexo> sexos;
+   
     private InstrutorDAO instrutorDAO;
     private List<Instrutor> instrutors;
     
@@ -40,8 +40,8 @@ public class InstrutorBean implements Serializable {
      @PostConstruct
     public void inicializar(){
     instrutor = new Instrutor();
-    sexos= Arrays.asList(Sexo.values());
-    instrutorDAO= new InstrutorDAO();    
+    instrutorDAO= new InstrutorDAO();
+    instrutors= instrutorDAO.findAll();
     }
     public List<SelectItem> getOpSexos(){
     List<SelectItem> list= new ArrayList<>();
@@ -50,29 +50,13 @@ public class InstrutorBean implements Serializable {
     }
     return list;
     }
-
+    
     public Instrutor getInstrutor() {
         return instrutor;
     }
 
     public void setInstrutor(Instrutor instrutor) {
         this.instrutor = instrutor;
-    }
-
-    public List<Sexo> getSexos() {
-        return sexos;
-    }
-
-    public void setSexos(List<Sexo> sexos) {
-        this.sexos = sexos;
-    }
-
-    public InstrutorDAO getInstrutorDAO() {
-        return instrutorDAO;
-    }
-
-    public void setInstrutorDAO(InstrutorDAO instrutorDAO) {
-        this.instrutorDAO = instrutorDAO;
     }
 
     public List<Instrutor> getInstrutors() {
@@ -82,6 +66,7 @@ public class InstrutorBean implements Serializable {
     public void setInstrutors(List<Instrutor> instrutors) {
         this.instrutors = instrutors;
     }
+    
      public void sava(ActionEvent event){
         instrutorDAO.save(instrutor);
         instrutor= new Instrutor();
@@ -106,4 +91,6 @@ public class InstrutorBean implements Serializable {
      }
      return instrutors;
  }
+
+    
 }

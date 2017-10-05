@@ -63,14 +63,14 @@
 
                                 <h:panelGrid columns="1">
                                     <p:outputLabel value="Telefone Principal"/>
-                                    <p:inputText value="#{funcionarioBean.funcionario.telefonePrincipal}"/>
+                                    <p:inputMask mask="+244 999999999" value="#{funcionarioBean.funcionario.telefonePrincipal}"/>
                                 </h:panelGrid>
                                 <h:panelGrid columns="1">
                                     <h:outputLabel value="Telefone Alternativo"/>
-                                    <p:inputText value="#{funcionarioBean.funcionario.telefoneAlternativo}"/>
+                                    <p:inputMask mask="+244 999999999" value="#{funcionarioBean.funcionario.telefoneAlternativo}"/>
                                 </h:panelGrid>
-                               
-                             
+
+
                                 <h:panelGrid columns="1">
                                     <h:outputLabel value="Email"/>
                                     <p:inputText value="#{funcionarioBean.funcionario.email}"/>
@@ -84,7 +84,7 @@
                                     <h:panelGrid columns="1">
                                         <h:outputLabel value="Data de Nascimento"/>
                                         <p:calendar value="#{funcionarioBean.funcionario.dataNascimento}" pattern="dd/MM/yyyy" locale="pt">
-                                           
+
                                         </p:calendar>
                                     </h:panelGrid>
                                 </h:panelGroup>
@@ -96,58 +96,58 @@
                                 <f:selectItems value="#{funcionarioBean.opSexos}"/> 
                             </h:selectOneRadio>              
                         </p:panel>
-                        
+
                         <p:commandButton actionListener="#{funcionarioBean.sava(event)}" value="Guardar"  update="growl" ajax="false"/>
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
-                        
-                        
+
+
 
                     </p:dialog> 
                 </h:form>  
 
                 <f:view>
                     <p:panel header="Lista dos Funcionarios">
-                    <h:form>
-                        <h:dataTable value="#{funcionarioBean.funcionarios}" var="item">
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Primeiro nome"/>
+                        <h:form>
+                            <h:dataTable value="#{funcionarioBean.funcionarios}" var="item">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Primeiro nome"/>
 
-                                </f:facet>
-                                <h:outputText value="#{item.primeiroNome}"/>
-                            </p:column>
+                                    </f:facet>
+                                    <h:outputText value="#{item.primeiroNome}"/>
+                                </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Segundo nome:"/>
-                                </f:facet>
-                                <h:outputText value="#{item.segundoNome}"/>
-                            </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Segundo nome:"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.segundoNome}"/>
+                                </p:column>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Sexo"/>
-                                </f:facet>
-                                <h:outputText value="#{item.sexo}"/>
-                            </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Sexo"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.sexo}"/>
+                                </p:column>
 
-                            
 
-                            <p:column headerText="Acções" style="width: 116px">
-                              
-                                
-                                <p:commandButton icon="ui-icon-trash" actionListener="#{funcionarioBean.delete(event)}">
-                                    <f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{item}"/>
-                                </p:commandButton>
-                                
-                                  <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
-                                      <f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{item}"/>
-                                </p:commandButton>
-                                
-                            </p:column>
-                        </h:dataTable>
-                    </h:form>
-                        </p:panel>
+
+                                <p:column headerText="Acções" style="width: 116px">
+
+
+                                    <p:commandButton icon="ui-icon-trash" actionListener="#{funcionarioBean.delete(event)}">
+                                        <f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{item}"/>
+                                    </p:commandButton>
+
+                                    <p:commandButton icon="ui-icon-edit" update=":formEditar:editar" oncomplete="PF('dialogoEditar').show();" >
+                                        <f:setPropertyActionListener target="#{funcionarioBean.funcionario}" value="#{item}"/>
+                                    </p:commandButton>
+
+                                </p:column>
+                            </h:dataTable>
+                        </h:form>
+                    </p:panel>
                 </f:view>
 
                 <h:form id="formEditar" >
@@ -189,8 +189,8 @@
                                     <h:outputLabel value="Telefone Alternativo"/>
                                     <p:inputText value="#{funcionarioBean.funcionario.telefoneAlternativo}"/>
                                 </h:panelGrid>
-                               
-                             
+
+
                                 <h:panelGrid columns="1">
                                     <h:outputLabel value="Email"/>
                                     <p:inputText value="#{funcionarioBean.funcionario.email}"/>
@@ -204,7 +204,7 @@
                                     <h:panelGrid columns="1">
                                         <h:outputLabel value="Data de Nascimento"/>
                                         <p:calendar value="#{funcionarioBean.funcionario.dataNascimento}" pattern="dd/MM/yyyy" locale="pt">
-                                           
+
                                         </p:calendar>
                                     </h:panelGrid>
                                 </h:panelGroup>
@@ -216,7 +216,7 @@
                                 <f:selectItems value="#{funcionarioBean.opSexos}"/> 
                             </h:selectOneRadio>              
                         </p:panel>
-                        
+
                         <p:commandButton actionListener="#{funcionarioBean.edit(event)}" value="Guardar"  update="growl" ajax="false"/>
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
 

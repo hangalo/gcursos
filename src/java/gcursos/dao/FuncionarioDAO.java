@@ -178,7 +178,6 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
             funcionario.setSexo(Sexo.getAbreviatura(rs.getString("sexo_funcionario")));
             funcionario.setTelefonePrincipal(rs.getString("telefone_principal"));
             funcionario.setTelefoneAlternativo(rs.getString("telefone_alternativo"));
-
             funcionario.setEmail(rs.getString("email_funcionario"));
             funcionario.setFacebook(rs.getString("facebook_funcionario"));
 
