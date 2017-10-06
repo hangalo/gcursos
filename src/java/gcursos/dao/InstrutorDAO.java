@@ -24,7 +24,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
     private static final String ACTUALIZAR="UPDATE instrutor SET primerio_nome_instrutor=?, segundo_nome_instrutor=?, sobrenome_instrutor=?, data_nascimento_instrutor=?, sexo_instrutor=?, telefone_pricipal_instrutor=?, telefone_alternativo_instrutor=?, email_instrutor=?, facebook_instrutor=? WHERE id_instrutor=?";
     private static final String ELIMINAR = "DELETE FROM instrutor HWERE id_instrutor=?";
     private static final String BUSCAR_POR_CODIGO = "SELECT *FROM instrutor WHERE id_instrutor=?";
-    private static final String LISTAR_TUDO = "SELECT *FROM istrutor";
+    private static final String LISTAR_TUDO = "SELECT *FROM instrutor";
 
     @Override
     public void save(Instrutor instrutor) {
@@ -145,7 +145,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
             }
 
         } catch (SQLException ex) {
-            System.err.println("Erro ao ler dados: " + ex.getLocalizedMessage());
+            System.err.println("Erro ao ler dados da Base de Dado: " + ex.getLocalizedMessage());
         } finally {
             Conexao.closeConnection(conn);
         }

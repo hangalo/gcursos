@@ -96,7 +96,46 @@
 
                         <p:commandButton actionListener="#{instrutorBean.sava}" value="Guardar"  update="growl" ajax="false"/>
                         <p:commandButton value="Fechar" action="action" ajax="false" immediate="true"/>
-                 </p:dialog> 
+                 </p:dialog>
+                    
+                    <p:fieldset legend="Lista Instrutor" >
+                        <p:dataTable value="#{instrutorBean.instrutors}" var="item">
+                            <p:column headerText="Primeiro Nome">
+                                <h:outputText value="#{item.primeiroNomeInstrutor}"/>                              
+                            </p:column>
+                            <p:column headerText="Segundo Nome" >
+                                <h:outputText value="#{item.segundoNomeInstrutor}"/>
+                            </p:column>
+                                                                               
+                            <p:column headerText="Data de Nascimento">
+                                <h:outputText value="#{item.dataNascimentoInstrutor}"/>                               
+                            </p:column>
+                            
+                            <p:column headerText="Data de Nascimento">
+                                <h:outputText value="#{item.dataNascimentoInstrutor}"/>                               
+                            </p:column>
+                            
+                                                        
+                             <p:column headerText="Email">
+                                 <h:outputText value="#{item.emailInstrutor}"/>                               
+                            </p:column>
+                            <p:column headerText="Facebook" >
+                                <h:outputText value="#{item.facebookInstrutor}"/>
+                            </p:column>
+                            <p:column headerText="Accao" style="width: 116px">  
+                                
+                                <p:commandButton icon="ui-icon-trash" actionListener="#{instrutorBean.delete(event)}">
+                                    <f:setPropertyActionListener target="#{instrutorBean.instrutor}" value="#{item}"/>
+                                    </p:commandButton>                                     
+                                
+                            </p:column>
+                        </p:dataTable>
+                        
+                        
+                       
+                            
+                        
+                    </p:fieldset>
                 </h:form>               
 
                 

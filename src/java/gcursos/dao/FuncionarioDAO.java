@@ -142,9 +142,7 @@ public class FuncionarioDAO implements GenericoDAO<Funcionario> {
     }
 
     @Override
-    public List<Funcionario> findAll() {
-
-      
+    public List<Funcionario> findAll() {      
         List<Funcionario> funcionarios = new ArrayList<>();
         try {
             conn = Conexao.getConnection();
