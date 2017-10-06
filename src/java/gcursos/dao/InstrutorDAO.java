@@ -94,7 +94,7 @@ public class InstrutorDAO implements GenericoDAO<Instrutor>{
         }
         try {
             conn= Conexao.getConnection();
-            ps.setInt(1, instrutor.getId());
+            ps.setInt(1, instrutor.getIdInstrutor());
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Erro ao Deletar dados"+e.getLocalizedMessage());
